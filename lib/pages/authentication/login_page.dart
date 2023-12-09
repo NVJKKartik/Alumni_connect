@@ -52,9 +52,9 @@ class _LogInPageState extends State<LogInPage> {
               Column(
                 children: [
                   Text(
-                    'alumni_connect',
-                    style: GoogleFonts.dancingScript(
-                      fontSize: 56.0,
+                    'Alumni Connect',
+                    style: GoogleFonts.poppins(
+                      fontSize: 39.0,
                       fontWeight: FontWeight.w800,
                     ),
                   ),
