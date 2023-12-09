@@ -39,7 +39,8 @@ class _LogInPageState extends State<LogInPage> {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/graduation.jpg"), // Replace with your image asset
+            image: AssetImage(
+                "assets/images/graduation.jpg"), // Replace with your image asset
             fit: BoxFit.cover,
           ),
         ),
@@ -66,6 +67,7 @@ class _LogInPageState extends State<LogInPage> {
                         color: const Color.fromARGB(255, 11, 11, 11),
                         fontWeight: FontWeight.w800,
                       ),
+                      textAlign: TextAlign.start,
                     ),
                     const Divider(
                       height: 28,
@@ -123,8 +125,7 @@ class _LogInPageState extends State<LogInPage> {
                       ),
                       child: const Text(
                         'LogIn',
-                        style: TextStyle(fontSize: 16,color: Colors.white),
-                        
+                        style: TextStyle(fontSize: 16, color: Colors.white),
                       ),
                     ),
                     const Divider(
