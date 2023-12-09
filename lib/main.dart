@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:alumni_connect/constants/routes.dart';
 import 'package:alumni_connect/pages/add_post/add_post_page.dart';
 import 'package:alumni_connect/pages/add_post/create_gig_page.dart';
@@ -11,7 +12,6 @@ import 'package:alumni_connect/pages/profile/profile_page.dart';
 import 'package:alumni_connect/pages/root_page.dart';
 import 'package:alumni_connect/pages/serach/search_page.dart';
 import 'package:alumni_connect/services/auth/auth_service.dart';
-import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
