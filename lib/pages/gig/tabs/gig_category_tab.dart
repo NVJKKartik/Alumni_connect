@@ -112,7 +112,7 @@ class _HomeTabState extends State<GigCategoryTab> {
                                                     height: 2,
                                                   ),
                                                   Text(
-                                                    'From \$${gig.gigStartingPrice}',
+                                                    'Salary \$${gig.gigStartingPrice}',
                                                     style: const TextStyle(
                                                       overflow:
                                                           TextOverflow.ellipsis,

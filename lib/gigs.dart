@@ -20,31 +20,24 @@ class Gigs {
 
 var gigs = [
   Gigs(
-    gigInfo: 'Wordpress, Game Development, Mobile Apps',
-    gigImage: 'programming.jpg',
+    gigInfo: 'Develops high-quality code, Solves complex problems, and Collaborates',
+    gigImage: 'digital-marketing.jpg',
     category: 'Software Engineers',
-    currentIndex: 6,
-    startColor: const Color(0xFF424242),
-    endColor: const Color(0xFF424242),
+    currentIndex: 2,
+    startColor: const Color(0xFFe18b41),
+    endColor: const Color(0xFFc7c73d),
   ),
   Gigs(
-    gigInfo: 'Logo & Brand Identity, Art & Illustration',
+    gigInfo: 'Analyzes data, builds predictive models, and extracts insight',
     gigImage: 'graphic-design.jpg',
     category: 'Data Scientists',
     currentIndex: 1,
     startColor: const Color(0xFF621e14),
     endColor: const Color(0xFFd13b10),
   ),
+  
   Gigs(
-    gigInfo: 'Marketing Strategy, Social Media Marketing, Local SEO',
-    gigImage: 'digital-marketing.jpg',
-    category: 'Network Security Engineers',
-    currentIndex: 2,
-    startColor: const Color(0xFFe18b41),
-    endColor: const Color(0xFFc7c73d),
-  ),
-  Gigs(
-    gigInfo: 'Content Writing, Editing, Career Writing, Storytelling',
+    gigInfo: 'Designs and develops mobile applications, ensuring functionality, user experience',
     gigImage: 'writing-&-translation.jpg',
     category: 'App Developers',
     currentIndex: 3,
@@ -52,7 +45,7 @@ var gigs = [
     endColor: const Color(0xFFd6a651),
   ),
   Gigs(
-    gigInfo: 'Editing, Post-Production, Animation, Social & Marketing Videos',
+    gigInfo: 'Develops and implements machine learning models, optimizes algorithms, and leverages data ',
     gigImage: 'video-&-Animation.jpg',
     category: 'Machine Learning Engineers',
     currentIndex: 4,
@@ -60,7 +53,7 @@ var gigs = [
     endColor: const Color(0xFF424242),
   ),
   Gigs(
-    gigInfo: 'Music Production, Audio Engineering, Voice Over & Streaming',
+    gigInfo: 'Designs and implements artificial intelligence solutions, leveraging machine learning and deep learning',
     gigImage: 'music-&-audio.jpg',
     category: 'AI Engineers',
     currentIndex: 5,
@@ -68,16 +61,23 @@ var gigs = [
     endColor: const Color(0xFF653424),
   ),
   Gigs(
-    gigInfo: 'Accounting, Administrative, Sales & Customer Care',
-    gigImage: 'business.jpg',
+    gigInfo: 'Designs and develops embedded systems, ensuring efficient hardware-software integration',
+    gigImage: 'programming.jpg',
     category: 'Embedded Systems Engineers',
+    currentIndex: 6,
+    startColor: const Color(0xFF424242),
+    endColor: const Color(0xFF424242),
+  ),
+  Gigs(
+    gigInfo: 'Monitors and analyzes network security, implements protective measures,',
+    gigImage: 'business.jpg',
+    category: 'Network Security Analyst',
     currentIndex: 7,
     startColor: const Color(0xFF212121),
     endColor: const Color(0xFF424242),
   ),
   Gigs(
-    gigInfo:
-        'Fashion & Style, Life Coaching, Leisure & Hobbies, Wellness & Fitness',
+    gigInfo: 'Architects and develops decentralized applications (DApps) on blockchain platforms, utilizing smart contracts',
     gigImage: 'lifestyle.jpg',
     category: 'Web3 Developers',
     currentIndex: 8,
