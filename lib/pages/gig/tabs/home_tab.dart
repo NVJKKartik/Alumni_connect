@@ -1,34 +1,33 @@
-import 'package:alumni_connect/pages/gig_details/gig_details_page.dart';
-import 'package:alumni_connect/services/cloud/cloud_gig/cloud_gig.dart';
-import 'package:alumni_connect/services/cloud/cloud_gig/cloud_gig_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class HomeTab extends StatefulWidget {
-  const HomeTab({super.key});
+  const HomeTab({Key? key}) : super(key: key);
 
   @override
   State<HomeTab> createState() => _HomeTabState();
 }
 
 class _HomeTabState extends State<HomeTab> {
+  // Define a list of constant job cards
+  final List<Map<String, dynamic>> jobCards = [
+    {
+      'title': 'Software Developer',
+      'startingPrice': 50000,
+      'rating': 4.5,
+      'imageURL':
+          'https://res.cloudinary.com/highereducation/images/f_auto,q_auto/v1673376079/ComputerScience.org/how-to-become-a-software-dev/how-to-become-a-software-dev.jpg?_i=AA', // Replace with actual image URL
+    },
+    // Add more job cards as needed
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      stream: CloudGigService.firebase().allGigs(),
-      builder: (BuildContext context, snapshot) {
-        switch (snapshot.connectionState) {
-          case ConnectionState.waiting:
-          case ConnectionState.active:
-            if (snapshot.hasData) {
-              final allGigs = snapshot.data as Iterable<CloudGig>;
-              return SafeArea(
-                top: false,
-                bottom: false,
-                child: Builder(
-                  builder: (BuildContext context) {
-                    return CustomScrollView(
-                      slivers: [
+    return SafeArea(
+      top: false,
+      bottom: false,
+      child: CustomScrollView(
+        slivers: [
                         SliverOverlapInjector(
                           handle:
                               NestedScrollView.sliverOverlapAbsorberHandleFor(
@@ -68,7 +67,7 @@ class _HomeTabState extends State<HomeTab> {
                                         borderRadius: BorderRadius.circular(36),
                                       ),
                                       child: const Text(
-                                        'Welcome to alumni_connect Store',
+                                        'Welcome to CGC IIIT Dharwad',
                                         style: TextStyle(
                                           fontWeight: FontWeight.w500,
                                           color: Colors.white,
@@ -81,7 +80,7 @@ class _HomeTabState extends State<HomeTab> {
                                     top: 80,
                                     left: 14,
                                     child: Text(
-                                      'EXPLORE OUR DIGITAL \nSERVICES PICKED \nFOR YOU',
+                                      'Explore upcoming Jobs and \nInternship Opportunity',
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
@@ -110,13 +109,13 @@ class _HomeTabState extends State<HomeTab> {
                                   const EdgeInsets.fromLTRB(16, 26, 16, 16),
                               child: RichText(
                                 text: const TextSpan(
-                                  text: 'Popular Services',
+                                  text: 'Trending Jobs and Internships',
                                   style: TextStyle(
                                       fontSize: 19,
                                       fontWeight: FontWeight.w600),
                                   children: [
                                     TextSpan(
-                                      text: '\nOver 50+ varieties',
+                                      text: '\nOver 50+ locations',
                                       style: TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w600,
@@ -129,134 +128,109 @@ class _HomeTabState extends State<HomeTab> {
                             ),
                           ),
                         ),
-                        SliverPadding(
-                          padding: const EdgeInsets.only(bottom: 90),
-                          sliver: SliverList(
-                            delegate: SliverChildBuilderDelegate(
-                                childCount: allGigs.length, (context, index) {
-                              final gig = allGigs.elementAt(index);
-                              return Padding(
-                                padding: const EdgeInsets.only(bottom: 14),
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            GigDetailsPage(cloudGig: gig),
-                                      ),
-                                    );
-                                  },
-                                  child: Container(
-                                    height: 94,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(18),
-                                      color: const Color(0xff212121),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          height: 94,
-                                          width: 100,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(18),
-                                            image: DecorationImage(
-                                              image: NetworkImage(
-                                                gig.gigCoverUrl,
-                                              ),
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                              left: 12,
-                                              right: 2,
-                                            ),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  gig.gigTitle,
-                                                  maxLines: 2,
-                                                  style: const TextStyle(
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.w700,
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  height: 2,
-                                                ),
-                                                Text(
-                                                  'From \$${gig.gigStartingPrice}',
-                                                  style: const TextStyle(
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: Colors.grey,
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  height: 2,
-                                                ),
-                                                RatingBar.builder(
-                                                  minRating: 1,
-                                                  maxRating: 5,
-                                                  initialRating: gig.gigRating,
-                                                  direction: Axis.horizontal,
-                                                  itemCount: 5,
-                                                  itemSize: 18,
-                                                  allowHalfRating: true,
-                                                  itemPadding: const EdgeInsets
-                                                      .symmetric(
-                                                    horizontal: 1,
-                                                  ),
-                                                  itemBuilder:
-                                                      (context, index) {
-                                                    return const Icon(
-                                                      Icons.star,
-                                                      color: Color(0xfff4c465),
-                                                    );
-                                                  },
-                                                  onRatingUpdate: ((value) =>
-                                                      print('rating')),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              );
-                            }),
-                          ),
+
+          // Add a SliverList for the constant job cards
+          SliverPadding(
+            padding: const EdgeInsets.only(bottom: 90),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  final job = jobCards[index];
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 14),
+                    child: InkWell(
+                      onTap: () {
+                        // Handle job card tap
+                      },
+                      child: Container(
+                        height: 94,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(18),
+                          color: const Color(0xff212121),
                         ),
-                      ],
-                    );
-                  },
-                ),
-              );
-            } else {
-              return const Center(
-                child: Text('No Recommendation'),
-              );
-            }
-          default:
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-        }
-      },
+                        child: Row(
+                          children: [
+                            Container(
+                              height: 94,
+                              width: 100,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(18),
+                                image: DecorationImage(
+                                  image: NetworkImage(job['imageURL']),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 12,
+                                  right: 2,
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      job['title'],
+                                      maxLines: 2,
+                                      style: const TextStyle(
+                                        overflow: TextOverflow.ellipsis,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 2,
+                                    ),
+                                    Text(
+                                      'Salary \$${job['startingPrice']}',
+                                      style: const TextStyle(
+                                        overflow: TextOverflow.ellipsis,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 2,
+                                    ),
+                                    RatingBar.builder(
+                                      minRating: 1,
+                                      maxRating: 5,
+                                      initialRating: job['rating'],
+                                      direction: Axis.horizontal,
+                                      itemCount: 5,
+                                      itemSize: 18,
+                                      allowHalfRating: true,
+                                      itemPadding: const EdgeInsets.symmetric(
+                                        horizontal: 1,
+                                      ),
+                                      itemBuilder: (context, index) {
+                                        return const Icon(
+                                          Icons.star,
+                                          color: Color(0xfff4c465),
+                                        );
+                                      },
+                                      onRatingUpdate: ((value) =>
+                                          print('rating')),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+                childCount: jobCards.length,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
