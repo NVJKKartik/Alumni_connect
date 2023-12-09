@@ -500,32 +500,35 @@ class _CreatejobpostingPageState extends State<CreatejobpostingPage> {
     String deliveryTime = _jobpostingDeliveryTimeController.text;
     double jobpostingStartingPrice =
         double.parse(_jobpostingStartingPriceController.text);
-
+    String jobpostingCoverUrl = '';
     if (_image != null) {
-      final jobpostingCoverUrl =
+      jobpostingCoverUrl =
           await FirebaseFileStorage().uploadjobpostingCoverImage(
         userId: userId,
         image: File(_image!.path),
         imageName: _image!.name,
       );
-
-      Cloudjobposting cloudjobposting = Cloudjobposting(
-        userId: userId,
-        jobpostingId: jobpostingId,
-        jobpostingRating: 0.0,
-        jobpostingCoverUrl: jobpostingCoverUrl,
-        jobpostingTitle: jobpostingTitle,
-        jobpostingCategory: _selectedCategory!,
-        jobpostingDescription: jobpostingDescription,
-        teamMembers: teamMembersId,
-        serviceSpecifications: services,
-        jobpostingStartingPrice: jobpostingStartingPrice,
-        deliveryTime: deliveryTime,
-        createdAt: DateTime.now(),
-      );
-
-      CloudjobpostingService.firebase().createNewjobposting(cloudjobposting);
+    } else {
+      jobpostingCoverUrl =
+          'https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/5X/8/f/3/0/8f301697992932857a7cfb2413d550875abfa9fd.png';
     }
+
+    Cloudjobposting cloudjobposting = Cloudjobposting(
+      userId: userId,
+      jobpostingId: jobpostingId,
+      jobpostingRating: 0.0,
+      jobpostingCoverUrl: jobpostingCoverUrl,
+      jobpostingTitle: jobpostingTitle,
+      jobpostingCategory: _selectedCategory!,
+      jobpostingDescription: jobpostingDescription,
+      teamMembers: teamMembersId,
+      serviceSpecifications: services,
+      jobpostingStartingPrice: jobpostingStartingPrice,
+      deliveryTime: deliveryTime,
+      createdAt: DateTime.now(),
+    );
+
+    CloudjobpostingService.firebase().createNewjobposting(cloudjobposting);
   }
 
   @override
