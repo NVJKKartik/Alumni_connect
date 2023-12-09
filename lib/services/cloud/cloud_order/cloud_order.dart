@@ -6,13 +6,13 @@ import 'package:flutter/material.dart';
 class CloudOrder {
   final String orderId;
   final String userId;
-  final String gigId;
-  final String gigCoverUrl;
+  final String jobpostingId;
+  final String jobpostingCoverUrl;
   final String employerName;
   final String employerProfileUrl;
-  final String gigTitle;
+  final String jobpostingTitle;
   final String employerId;
-  final double gigPrice;
+  final double jobpostingPrice;
   final double serviceCharge;
   final double totalPrice;
   final String projectRequirement;
@@ -29,13 +29,13 @@ class CloudOrder {
   const CloudOrder({
     required this.orderId,
     required this.userId,
-    required this.gigId,
-    required this.gigTitle,
-    required this.gigCoverUrl,
+    required this.jobpostingId,
+    required this.jobpostingTitle,
+    required this.jobpostingCoverUrl,
     required this.employerName,
     required this.employerProfileUrl,
     required this.employerId,
-    required this.gigPrice,
+    required this.jobpostingPrice,
     required this.serviceCharge,
     required this.totalPrice,
     this.projectRequirement = '',
@@ -53,13 +53,13 @@ class CloudOrder {
   CloudOrder.fromJson(Map<String, dynamic> json)
       : orderId = json[orderIdFieldName],
         userId = json[userIdFieldName],
-        gigId = json[gigIdFieldName],
-        gigCoverUrl = json[gigCoverUrlFieldName],
-        gigTitle = json[gigTitleFieldName],
+        jobpostingId = json[jobpostingIdFieldName],
+        jobpostingCoverUrl = json[jobpostingCoverUrlFieldName],
+        jobpostingTitle = json[jobpostingTitleFieldName],
         employerName = json[employerNameFieldName],
         employerId = json[employerIdFieldName],
         employerProfileUrl = json[employerProfileUrlFieldName],
-        gigPrice = json[gigPriceFieldName],
+        jobpostingPrice = json[jobpostingPriceFieldName],
         serviceCharge = json[serviceChargeFieldName],
         totalPrice = json[totalPriceFieldName],
         projectRequirement = json[projectRequirementFieldName],
@@ -76,14 +76,15 @@ class CloudOrder {
   CloudOrder.fromSnapshot(QueryDocumentSnapshot<Map<String, dynamic>> snapshot)
       : orderId = snapshot.data()[orderIdFieldName],
         userId = snapshot.data()[userIdFieldName],
-        gigId = snapshot.data()[gigIdFieldName],
-        gigCoverUrl = snapshot.data()[gigCoverUrlFieldName] as String,
-        gigTitle = snapshot.data()[gigTitleFieldName] as String,
+        jobpostingId = snapshot.data()[jobpostingIdFieldName],
+        jobpostingCoverUrl =
+            snapshot.data()[jobpostingCoverUrlFieldName] as String,
+        jobpostingTitle = snapshot.data()[jobpostingTitleFieldName] as String,
         employerName = snapshot.data()[employerNameFieldName] as String,
         employerProfileUrl =
             snapshot.data()[employerProfileUrlFieldName] as String,
         employerId = snapshot.data()[employerIdFieldName],
-        gigPrice = snapshot.data()[gigPriceFieldName] as double,
+        jobpostingPrice = snapshot.data()[jobpostingPriceFieldName] as double,
         serviceCharge = snapshot.data()[serviceChargeFieldName] as double,
         totalPrice = snapshot.data()[totalPriceFieldName] as double,
         projectRequirement =
@@ -104,13 +105,13 @@ class CloudOrder {
   Map<String, dynamic> toJson() => {
         orderIdFieldName: orderId,
         userIdFieldName: userId,
-        gigIdFieldName: gigId,
-        gigTitleFieldName: gigTitle,
-        gigCoverUrlFieldName: gigCoverUrl,
+        jobpostingIdFieldName: jobpostingId,
+        jobpostingTitleFieldName: jobpostingTitle,
+        jobpostingCoverUrlFieldName: jobpostingCoverUrl,
         employerNameFieldName: employerName,
         employerProfileUrlFieldName: employerProfileUrl,
         employerIdFieldName: employerId,
-        gigPriceFieldName: gigPrice,
+        jobpostingPriceFieldName: jobpostingPrice,
         serviceChargeFieldName: serviceCharge,
         totalPriceFieldName: totalPrice,
         projectRequirementFieldName: projectRequirement,
@@ -126,7 +127,7 @@ class CloudOrder {
       };
 
   @override
-  bool operator ==(covariant CloudOrder other) => gigId == other.orderId;
+  bool operator ==(covariant CloudOrder other) => jobpostingId == other.orderId;
 
   @override
   int get hashCode => orderId.hashCode;

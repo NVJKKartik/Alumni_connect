@@ -38,7 +38,7 @@ class _OrderSuccessPageState extends State<OrderSuccessPage> {
             ),
           ),
           const Text(
-            'Continue your conversation with gigs through our \nMessaging services.',
+            'Continue your conversation with jobpostings through our \nMessaging services.',
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontWeight: FontWeight.w500, fontSize: 13, color: Colors.grey),

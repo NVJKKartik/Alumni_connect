@@ -49,13 +49,13 @@ class _OfferDetailsPageState extends State<OfferDetailsPage> {
     CloudOrder cloudOrder = CloudOrder(
       orderId: orderId,
       userId: widget.cloudOrder.userId,
-      gigId: widget.cloudOrder.gigId,
-      gigTitle: widget.cloudOrder.gigTitle,
-      gigCoverUrl: widget.cloudOrder.gigCoverUrl,
+      jobpostingId: widget.cloudOrder.jobpostingId,
+      jobpostingTitle: widget.cloudOrder.jobpostingTitle,
+      jobpostingCoverUrl: widget.cloudOrder.jobpostingCoverUrl,
       employerId: widget.cloudOrder.employerId,
       employerName: widget.cloudOrder.employerName,
       employerProfileUrl: widget.cloudOrder.employerProfileUrl,
-      gigPrice: widget.cloudOrder.gigPrice,
+      jobpostingPrice: widget.cloudOrder.jobpostingPrice,
       serviceSpecifications: widget.cloudOrder.serviceSpecifications,
       serviceCharge: widget.cloudOrder.serviceCharge,
       totalPrice: widget.cloudOrder.totalPrice,
@@ -103,7 +103,7 @@ class _OfferDetailsPageState extends State<OfferDetailsPage> {
                           borderRadius: BorderRadius.circular(18),
                           image: DecorationImage(
                             image: NetworkImage(
-                              widget.cloudOrder.gigCoverUrl,
+                              widget.cloudOrder.jobpostingCoverUrl,
                             ),
                             fit: BoxFit.cover,
                           ),
@@ -117,7 +117,7 @@ class _OfferDetailsPageState extends State<OfferDetailsPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                widget.cloudOrder.gigTitle,
+                                widget.cloudOrder.jobpostingTitle,
                                 maxLines: 2,
                                 style: const TextStyle(
                                   overflow: TextOverflow.ellipsis,
@@ -255,7 +255,7 @@ class _OfferDetailsPageState extends State<OfferDetailsPage> {
                             ),
                           ),
                           Text(
-                            '\$${widget.cloudOrder.gigPrice}',
+                            '\$${widget.cloudOrder.jobpostingPrice}',
                             style: const TextStyle(
                               fontSize: 16,
                             ),

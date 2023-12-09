@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:alumni_connect/constants/routes.dart';
 import 'package:alumni_connect/pages/add_post/add_post_page.dart';
-import 'package:alumni_connect/pages/add_post/create_gig_page.dart';
+import 'package:alumni_connect/pages/add_post/create_jobposting_page.dart';
 import 'package:alumni_connect/pages/authentication/login_page.dart';
 import 'package:alumni_connect/pages/authentication/signup_detail_page.dart';
 import 'package:alumni_connect/pages/authentication/signup_page.dart';
@@ -34,7 +34,7 @@ void main() async {
         addPostRoute: (context) => const AddPostPage(),
         postCommentRoute: (context) => const CommentsPage(),
         profileRoute: (context) => const ProfilePage(),
-        createGigRoute: (context) => const CreateGigPage(),
+        createjobpostingRoute: (context) => const CreatejobpostingPage(),
       },
     ),
   );

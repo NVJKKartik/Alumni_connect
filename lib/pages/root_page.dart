@@ -1,7 +1,7 @@
 import 'package:alumni_connect/pages/activity/activity_page.dart';
 import 'package:alumni_connect/pages/profile/profile_page.dart';
 import 'package:alumni_connect/pages/serach/search_page.dart';
-import 'package:alumni_connect/pages/gig/gigs_page.dart';
+import 'package:alumni_connect/pages/jobposting/jobpostings_page.dart';
 import 'package:alumni_connect/pages/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +19,7 @@ class _RootPageState extends State<RootPage> {
     const SearchPage(),
     const ActivityPage(),
     const ProfilePage(),
-    const GigsPage(
+    const jobpostingsPage(
       selectedTab: 0,
     ),
   ];
@@ -121,7 +121,7 @@ class _RootPageState extends State<RootPage> {
                   width: 23,
                   height: 23,
                 ),
-                label: 'Gigs',
+                label: 'jobpostings',
               ),
             ],
           ),

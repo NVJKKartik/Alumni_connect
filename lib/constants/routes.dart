@@ -8,4 +8,4 @@ const chatRoute = '/chat/';
 const addPostRoute = '/add-post/';
 const postCommentRoute = '/post-comment/';
 const profileRoute = '/profile/';
-const createGigRoute = '/create-gig/';
+const createjobpostingRoute = '/create-jobposting/';

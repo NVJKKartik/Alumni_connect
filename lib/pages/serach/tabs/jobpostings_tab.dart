@@ -1,18 +1,18 @@
-import 'package:alumni_connect/pages/gig_details/gig_details_page.dart';
-import 'package:alumni_connect/services/cloud/cloud_gig/cloud_gig.dart';
-import 'package:alumni_connect/services/cloud/cloud_gig/cloud_gig_service.dart';
+import 'package:alumni_connect/pages/jobposting_details/jobposting_details_page.dart';
+import 'package:alumni_connect/services/cloud/cloud_jobposting/cloud_jobposting.dart';
+import 'package:alumni_connect/services/cloud/cloud_jobposting/cloud_jobposting_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class GigsTab extends StatefulWidget {
-  const GigsTab({super.key, required this.keyword});
+class jobpostingsTab extends StatefulWidget {
+  const jobpostingsTab({super.key, required this.keyword});
   final String keyword;
 
   @override
-  State<GigsTab> createState() => _GigsTabState();
+  State<jobpostingsTab> createState() => _jobpostingsTabState();
 }
 
-class _GigsTabState extends State<GigsTab> {
+class _jobpostingsTabState extends State<jobpostingsTab> {
   @override
   void initState() {
     super.initState();
@@ -21,13 +21,15 @@ class _GigsTabState extends State<GigsTab> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: CloudGigService.firebase().searchGigs(widget.keyword),
-      builder: (BuildContext context, AsyncSnapshot<List<CloudGig>> snapshot) {
+      future:
+          CloudjobpostingService.firebase().searchjobpostings(widget.keyword),
+      builder: (BuildContext context,
+          AsyncSnapshot<List<Cloudjobposting>> snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.done:
             if (snapshot.hasData) {
-              final searchGigs = snapshot.data;
-              if (searchGigs!.isEmpty) {
+              final searchjobpostings = snapshot.data;
+              if (searchjobpostings!.isEmpty) {
                 return Center(
                   child: Image.asset(
                     'assets/icons/nothing.png',
@@ -51,9 +53,9 @@ class _GigsTabState extends State<GigsTab> {
                         ),
                         SliverList(
                           delegate: SliverChildBuilderDelegate(
-                            childCount: searchGigs.length,
+                            childCount: searchjobpostings.length,
                             (context, index) {
-                              final userGig = searchGigs[index];
+                              final userjobposting = searchjobpostings[index];
                               return Padding(
                                 padding: const EdgeInsets.only(bottom: 12.0),
                                 child: InkWell(
@@ -61,8 +63,9 @@ class _GigsTabState extends State<GigsTab> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => GigDetailsPage(
-                                          cloudGig: userGig,
+                                        builder: (context) =>
+                                            jobpostingDetailsPage(
+                                          cloudjobposting: userjobposting,
                                         ),
                                       ),
                                     );
@@ -83,7 +86,8 @@ class _GigsTabState extends State<GigsTab> {
                                                 BorderRadius.circular(18),
                                             image: DecorationImage(
                                               image: NetworkImage(
-                                                userGig.gigCoverUrl,
+                                                userjobposting
+                                                    .jobpostingCoverUrl,
                                               ),
                                               fit: BoxFit.cover,
                                             ),
@@ -100,7 +104,8 @@ class _GigsTabState extends State<GigsTab> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  userGig.gigTitle,
+                                                  userjobposting
+                                                      .jobpostingTitle,
                                                   maxLines: 2,
                                                   style: const TextStyle(
                                                     overflow:
@@ -113,7 +118,7 @@ class _GigsTabState extends State<GigsTab> {
                                                   height: 2,
                                                 ),
                                                 Text(
-                                                  'From \$${userGig.gigStartingPrice}',
+                                                  'From \$${userjobposting.jobpostingStartingPrice}',
                                                   style: const TextStyle(
                                                       overflow:
                                                           TextOverflow.ellipsis,
@@ -128,8 +133,8 @@ class _GigsTabState extends State<GigsTab> {
                                                 RatingBar.builder(
                                                   minRating: 1,
                                                   maxRating: 5,
-                                                  initialRating:
-                                                      userGig.gigRating,
+                                                  initialRating: userjobposting
+                                                      .jobpostingRating,
                                                   direction: Axis.horizontal,
                                                   itemCount: 5,
                                                   itemSize: 18,
@@ -165,7 +170,7 @@ class _GigsTabState extends State<GigsTab> {
               );
             } else {
               return const Center(
-                child: Text('Gig Not found'),
+                child: Text('jobposting Not found'),
               );
             }
           default:

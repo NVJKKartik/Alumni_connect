@@ -1,5 +1,5 @@
 import 'package:alumni_connect/pages/serach/tabs/accounts_tab.dart';
-import 'package:alumni_connect/pages/serach/tabs/gigs_tab.dart';
+import 'package:alumni_connect/pages/serach/tabs/jobpostings_tab.dart';
 import 'package:alumni_connect/pages/serach/tabs/recommendations_tab.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +11,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  final List<String> tabs = <String>['Post', 'Account', 'Gigs'];
+  final List<String> tabs = <String>['Post', 'Account', 'jobpostings'];
 
   String keyword = '';
 
@@ -114,7 +114,7 @@ class _SearchPageState extends State<SearchPage> {
                   keyword: keyword,
                 ),
                 AccountsTab(keyword: keyword),
-                GigsTab(keyword: keyword),
+                jobpostingsTab(keyword: keyword),
               ],
             ),
           ),

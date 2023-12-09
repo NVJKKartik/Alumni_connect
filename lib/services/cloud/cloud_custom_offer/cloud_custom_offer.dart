@@ -6,13 +6,13 @@ import 'package:flutter/material.dart';
 class CloudCustomOffer {
   final String orderId;
   final String userId;
-  final String gigId;
-  final String gigCoverUrl;
+  final String jobpostingId;
+  final String jobpostingCoverUrl;
   final String employerName;
   final String employerProfileUrl;
-  final String gigTitle;
+  final String jobpostingTitle;
   final String employerId;
-  final double gigPrice;
+  final double jobpostingPrice;
   final double serviceCharge;
   final double totalPrice;
   final List serviceSpecifications;
@@ -22,13 +22,13 @@ class CloudCustomOffer {
   const CloudCustomOffer({
     required this.orderId,
     required this.userId,
-    required this.gigId,
-    required this.gigTitle,
-    required this.gigCoverUrl,
+    required this.jobpostingId,
+    required this.jobpostingTitle,
+    required this.jobpostingCoverUrl,
     required this.employerName,
     required this.employerProfileUrl,
     required this.employerId,
-    required this.gigPrice,
+    required this.jobpostingPrice,
     required this.serviceCharge,
     required this.totalPrice,
     required this.serviceSpecifications,
@@ -40,14 +40,15 @@ class CloudCustomOffer {
       QueryDocumentSnapshot<Map<String, dynamic>> snapshot)
       : orderId = snapshot.data()[orderIdFieldName],
         userId = snapshot.data()[userIdFieldName],
-        gigId = snapshot.data()[gigIdFieldName],
-        gigCoverUrl = snapshot.data()[gigCoverUrlFieldName] as String,
-        gigTitle = snapshot.data()[gigTitleFieldName] as String,
+        jobpostingId = snapshot.data()[jobpostingIdFieldName],
+        jobpostingCoverUrl =
+            snapshot.data()[jobpostingCoverUrlFieldName] as String,
+        jobpostingTitle = snapshot.data()[jobpostingTitleFieldName] as String,
         employerName = snapshot.data()[employerNameFieldName] as String,
         employerProfileUrl =
             snapshot.data()[employerProfileUrlFieldName] as String,
         employerId = snapshot.data()[employerIdFieldName],
-        gigPrice = snapshot.data()[gigPriceFieldName] as double,
+        jobpostingPrice = snapshot.data()[jobpostingPriceFieldName] as double,
         serviceCharge = snapshot.data()[serviceChargeFieldName] as double,
         totalPrice = snapshot.data()[totalPriceFieldName] as double,
         serviceSpecifications =
@@ -59,13 +60,13 @@ class CloudCustomOffer {
   Map<String, dynamic> toJson() => {
         orderIdFieldName: orderId,
         userIdFieldName: userId,
-        gigIdFieldName: gigId,
-        gigTitleFieldName: gigTitle,
-        gigCoverUrlFieldName: gigCoverUrl,
+        jobpostingIdFieldName: jobpostingId,
+        jobpostingTitleFieldName: jobpostingTitle,
+        jobpostingCoverUrlFieldName: jobpostingCoverUrl,
         employerNameFieldName: employerName,
         employerProfileUrlFieldName: employerProfileUrl,
         employerIdFieldName: employerId,
-        gigPriceFieldName: gigPrice,
+        jobpostingPriceFieldName: jobpostingPrice,
         serviceChargeFieldName: serviceCharge,
         totalPriceFieldName: totalPrice,
         serviceSpecificationsFieldName: serviceSpecifications,
@@ -74,7 +75,8 @@ class CloudCustomOffer {
       };
 
   @override
-  bool operator ==(covariant CloudCustomOffer other) => gigId == other.orderId;
+  bool operator ==(covariant CloudCustomOffer other) =>
+      jobpostingId == other.orderId;
 
   @override
   int get hashCode => orderId.hashCode;

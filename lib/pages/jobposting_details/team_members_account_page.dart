@@ -24,7 +24,7 @@ class _TeamMembersAccountPageState extends State<TeamMembersAccountPage> {
       appBar: AppBar(
         backgroundColor: Colors.black,
         centerTitle: false,
-        title: const Text('Gig Members'),
+        title: const Text('jobposting Members'),
       ),
       body: FutureBuilder(
         future: CloudUserService.firebase().getUser(userId: userId),

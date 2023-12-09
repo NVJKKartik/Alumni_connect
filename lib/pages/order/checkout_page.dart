@@ -1,6 +1,6 @@
 import 'package:alumni_connect/pages/order/order_success_page.dart';
 import 'package:alumni_connect/services/auth/auth_service.dart';
-import 'package:alumni_connect/services/cloud/cloud_gig/cloud_gig.dart';
+import 'package:alumni_connect/services/cloud/cloud_jobposting/cloud_jobposting.dart';
 import 'package:alumni_connect/services/cloud/cloud_order/cloud_order.dart';
 import 'package:alumni_connect/services/cloud/cloud_order/cloud_order_service.dart';
 import 'package:alumni_connect/services/cloud/cloud_user/cloud_user_service.dart';
@@ -9,8 +9,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:uuid/uuid.dart';
 
 class CheckoutPage extends StatefulWidget {
-  const CheckoutPage({super.key, required this.cloudGig});
-  final CloudGig cloudGig;
+  const CheckoutPage({super.key, required this.cloudjobposting});
+  final Cloudjobposting cloudjobposting;
 
   @override
   State<CheckoutPage> createState() => _CheckoutPage();
@@ -42,21 +42,22 @@ class _CheckoutPage extends State<CheckoutPage> {
 
     CloudOrder cloudOrder = CloudOrder(
       orderId: orderId,
-      userId: widget.cloudGig.userId,
-      gigId: widget.cloudGig.gigId,
-      gigTitle: widget.cloudGig.gigTitle,
-      gigCoverUrl: widget.cloudGig.gigCoverUrl,
+      userId: widget.cloudjobposting.userId,
+      jobpostingId: widget.cloudjobposting.jobpostingId,
+      jobpostingTitle: widget.cloudjobposting.jobpostingTitle,
+      jobpostingCoverUrl: widget.cloudjobposting.jobpostingCoverUrl,
       employerId: employerId,
       employerName: employer!.fullName,
       employerProfileUrl: employer.profileUrl!,
-      gigPrice: widget.cloudGig.gigStartingPrice,
-      serviceSpecifications: widget.cloudGig.serviceSpecifications,
-      serviceCharge: widget.cloudGig.gigStartingPrice.toDouble() * 0.1,
-      totalPrice: widget.cloudGig.gigStartingPrice +
-          (widget.cloudGig.gigStartingPrice).toDouble() * 0.1,
+      jobpostingPrice: widget.cloudjobposting.jobpostingStartingPrice,
+      serviceSpecifications: widget.cloudjobposting.serviceSpecifications,
+      serviceCharge:
+          widget.cloudjobposting.jobpostingStartingPrice.toDouble() * 0.1,
+      totalPrice: widget.cloudjobposting.jobpostingStartingPrice +
+          (widget.cloudjobposting.jobpostingStartingPrice).toDouble() * 0.1,
       projectRequirement: _projectRequirementController.text,
       createdAt: DateTime.now(),
-      deliveryTime: widget.cloudGig.deliveryTime,
+      deliveryTime: widget.cloudjobposting.deliveryTime,
     );
     CloudOrderService.firebase().createNewOrder(cloudOrder);
   }
@@ -96,7 +97,7 @@ class _CheckoutPage extends State<CheckoutPage> {
                           borderRadius: BorderRadius.circular(18),
                           image: DecorationImage(
                             image: NetworkImage(
-                              widget.cloudGig.gigCoverUrl,
+                              widget.cloudjobposting.jobpostingCoverUrl,
                             ),
                             fit: BoxFit.cover,
                           ),
@@ -110,7 +111,7 @@ class _CheckoutPage extends State<CheckoutPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                widget.cloudGig.gigTitle,
+                                widget.cloudjobposting.jobpostingTitle,
                                 maxLines: 2,
                                 style: const TextStyle(
                                   overflow: TextOverflow.ellipsis,
@@ -127,7 +128,8 @@ class _CheckoutPage extends State<CheckoutPage> {
                               RatingBar.builder(
                                 minRating: 1,
                                 maxRating: 5,
-                                initialRating: widget.cloudGig.gigRating,
+                                initialRating:
+                                    widget.cloudjobposting.jobpostingRating,
                                 direction: Axis.horizontal,
                                 itemCount: 5,
                                 itemSize: 18,
@@ -418,12 +420,13 @@ class _CheckoutPage extends State<CheckoutPage> {
                     ),
                     ListView.builder(
                       padding: EdgeInsets.zero,
-                      itemCount: widget.cloudGig.serviceSpecifications.length,
+                      itemCount:
+                          widget.cloudjobposting.serviceSpecifications.length,
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
                         final service =
-                            widget.cloudGig.serviceSpecifications[index];
+                            widget.cloudjobposting.serviceSpecifications[index];
                         return Padding(
                           padding: const EdgeInsets.only(top: 5),
                           child: Row(
@@ -475,7 +478,7 @@ class _CheckoutPage extends State<CheckoutPage> {
                             ),
                           ),
                           Text(
-                            '\$${widget.cloudGig.gigStartingPrice}',
+                            '\$${widget.cloudjobposting.jobpostingStartingPrice}',
                             // ignore: prefer_const_constructors
                             style: TextStyle(
                               fontSize: 16,
@@ -496,7 +499,7 @@ class _CheckoutPage extends State<CheckoutPage> {
                             ),
                           ),
                           Text(
-                            '\$${(widget.cloudGig.gigStartingPrice).toDouble() * 0.1}',
+                            '\$${(widget.cloudjobposting.jobpostingStartingPrice).toDouble() * 0.1}',
                             style: const TextStyle(
                               fontSize: 16,
                             ),
@@ -517,7 +520,7 @@ class _CheckoutPage extends State<CheckoutPage> {
                             ),
                           ),
                           Text(
-                            '\$${widget.cloudGig.gigStartingPrice + (widget.cloudGig.gigStartingPrice).toDouble() * 0.1}',
+                            '\$${widget.cloudjobposting.jobpostingStartingPrice + (widget.cloudjobposting.jobpostingStartingPrice).toDouble() * 0.1}',
                             style: const TextStyle(
                               fontSize: 16,
                             ),
@@ -538,7 +541,7 @@ class _CheckoutPage extends State<CheckoutPage> {
                             ),
                           ),
                           Text(
-                            widget.cloudGig.deliveryTime,
+                            widget.cloudjobposting.deliveryTime,
                             style: const TextStyle(
                               fontSize: 16,
                             ),
