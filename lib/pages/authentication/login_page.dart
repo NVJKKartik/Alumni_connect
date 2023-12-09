@@ -35,75 +35,85 @@ class _LogInPageState extends State<LogInPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'Enter your email & Password',
-                style: TextStyle(
+      resizeToAvoidBottomInset: false,
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+                "assets/images/graduation.jpg"), // Replace with your image asset
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Enter your email & Password',
+                  style: TextStyle(
                     color: Colors.grey,
                     fontSize: 14,
-                    fontWeight: FontWeight.bold),
-              ),
-              Column(
-                children: [
-                  Text(
-                    'alumni_connect',
-                    style: GoogleFonts.dancingScript(
-                      fontSize: 56.0,
-                      fontWeight: FontWeight.w800,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Column(
+                  children: [
+                    Text(
+                      'Alumni Connect',
+                      style: GoogleFonts.poppins(
+                        fontSize: 39.0,
+                        color: const Color.fromARGB(255, 11, 11, 11),
+                        fontWeight: FontWeight.w800,
+                      ),
+                      textAlign: TextAlign.start,
                     ),
-                  ),
-                  const Divider(
-                    height: 28,
-                  ),
-                  SizedBox(
-                    child: TextFieldInput(
-                      textEditingController: _emailController,
-                      textInputType: TextInputType.emailAddress,
-                      hintText: 'Email address',
+                    const Divider(
+                      height: 28,
                     ),
-                  ),
-                  const Divider(
-                    height: 14,
-                  ),
-                  TextFieldInput(
-                    textEditingController: _passwordController,
-                    textInputType: TextInputType.text,
-                    hintText: 'Password',
-                    isPassword: true,
-                  ),
-                  const Divider(
-                    height: 14,
-                  ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      // login
-                      final email = _emailController.text;
-                      final password = _passwordController.text;
-                      try {
-                        await AuthService.firebase().logIn(
-                          email: email,
-                          password: password,
-                        );
-                        if (!mounted) return;
-                        Navigator.of(context).popAndPushNamed(
-                          rootRoute,
-                          // (Route<dynamic> route) => false,
-                        );
-                      } on UserNotFoundException {
-                        "User not found";
-                      } on WrongPasswordException {
-                        "Wrong password";
-                      } on GenericAuthException {
-                        'Authentication error';
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
+                    SizedBox(
+                      child: TextFieldInput(
+                        textEditingController: _emailController,
+                        textInputType: TextInputType.emailAddress,
+                        hintText: 'Email address',
+                      ),
+                    ),
+                    const Divider(
+                      height: 14,
+                    ),
+                    TextFieldInput(
+                      textEditingController: _passwordController,
+                      textInputType: TextInputType.text,
+                      hintText: 'Password',
+                      isPassword: true,
+                    ),
+                    const Divider(
+                      height: 14,
+                    ),
+                    ElevatedButton(
+                      onPressed: () async {
+                        // login
+                        final email = _emailController.text;
+                        final password = _passwordController.text;
+                        try {
+                          await AuthService.firebase().logIn(
+                            email: email,
+                            password: password,
+                          );
+                          if (!mounted) return;
+                          Navigator.of(context).popAndPushNamed(
+                            rootRoute,
+                          );
+                        } on UserNotFoundException {
+                          "User not found";
+                        } on WrongPasswordException {
+                          "Wrong password";
+                        } on GenericAuthException {
+                          'Authentication error';
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
                         minimumSize: const Size(
                           double.infinity,
                           56,
@@ -111,80 +121,81 @@ class _LogInPageState extends State<LogInPage> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(18),
                         ),
-                        backgroundColor: Colors.blue.shade800),
-                    child: const Text(
-                      'LogIn',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
-                  const Divider(
-                    height: 14,
-                  ),
-                  RichText(
-                    text: TextSpan(
-                      text: 'Forgot your password? ',
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w500,
+                        backgroundColor: Colors.blue.shade800,
                       ),
-                      children: [
-                        TextSpan(
-                          text: 'Get help logging in.',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                          ),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const SignUpPage(),
-                                ),
-                              );
-                            },
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  const Divider(
-                    height: 30,
-                    color: Colors.grey,
-                  ),
-                  RichText(
-                    text: TextSpan(
-                      text: 'Don\'t have an account? ',
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w500,
+                      child: const Text(
+                        'LogIn',
+                        style: TextStyle(fontSize: 16, color: Colors.white),
                       ),
-                      children: [
-                        TextSpan(
-                          text: 'Sign up',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                          ),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              Navigator.of(context).popAndPushNamed(
-                                signupRoute,
-                                // (Route<dynamic> route) => false,
-                              );
-                            },
-                        ),
-                      ],
                     ),
-                  ),
-                ],
-              ),
-            ],
+                    const Divider(
+                      height: 14,
+                    ),
+                    RichText(
+                      text: TextSpan(
+                        text: 'Forgot your password? ',
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Color.fromARGB(255, 9, 9, 9),
+                          fontWeight: FontWeight.w500,
+                        ),
+                        children: [
+                          TextSpan(
+                            text: 'Get help logging in.',
+                            style: const TextStyle(
+                              color: Color.fromARGB(255, 15, 15, 15),
+                              fontWeight: FontWeight.w700,
+                            ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const SignUpPage(),
+                                  ),
+                                );
+                              },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    const Divider(
+                      height: 30,
+                      color: Colors.grey,
+                    ),
+                    RichText(
+                      text: TextSpan(
+                        text: 'Don\'t have an account? ',
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        children: [
+                          TextSpan(
+                            text: 'Sign up',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                            ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                Navigator.of(context).popAndPushNamed(
+                                  signupRoute,
+                                );
+                              },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

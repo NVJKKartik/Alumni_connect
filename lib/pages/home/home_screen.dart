@@ -62,9 +62,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         title: Text(
-          'alumni_connect',
-          style: GoogleFonts.dancingScript(
-            fontSize: 30.0,
+          'Alumni Connect',
+          style: GoogleFonts.poppins(
+            fontSize: 20.0,
             fontWeight: FontWeight.w800,
           ),
         ),
