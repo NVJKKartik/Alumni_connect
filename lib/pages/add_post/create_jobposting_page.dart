@@ -43,6 +43,7 @@ class _CreatejobpostingPageState extends State<CreatejobpostingPage> {
   List<Map> services = [];
 
   final jobpostingCategories = [
+<<<<<<< HEAD
     'Data Scientist',
     'Software Developer',
     'App Developer',
@@ -51,6 +52,17 @@ class _CreatejobpostingPageState extends State<CreatejobpostingPage> {
     'Embedded Systems Engineer',
     'Network Security Analyst',
     'Web3 Developer',
+=======
+    'Home',
+    'Software Engineers',
+    'Data Scientists',
+    'App Developers',
+    'Machine Learning Engineers',
+    'AI Engineers',
+    'Embedded Systems Engineers',
+    'Network Security Analyst',
+    'Web3 Developers',
+>>>>>>> bb3ed9b04deed4e6aa92b35199b1cf0f021c2517
   ];
 
   @override
@@ -509,7 +521,7 @@ class _CreatejobpostingPageState extends State<CreatejobpostingPage> {
       );
     } else {
       jobpostingCoverUrl =
-          'https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/5X/8/f/3/0/8f301697992932857a7cfb2413d550875abfa9fd.png';
+          'https://thumbs.dreamstime.com/z/basic-rgb-174755309.jpg';
     }
 
     Cloudjobposting cloudjobposting = Cloudjobposting(

@@ -47,7 +47,7 @@ class _jobpostingsPageState extends State<jobpostingsPage> {
                   centerTitle: false,
                   elevation: 0,
                   title: const Text(
-                    'Jobs and Internships',
+                    'Jobs/Internships/Gigs',
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   bottom: PreferredSize(
