@@ -43,7 +43,6 @@ class _CreatejobpostingPageState extends State<CreatejobpostingPage> {
   List<Map> services = [];
 
   final jobpostingCategories = [
-<<<<<<< HEAD
     'Data Scientist',
     'Software Developer',
     'App Developer',
@@ -52,17 +51,6 @@ class _CreatejobpostingPageState extends State<CreatejobpostingPage> {
     'Embedded Systems Engineer',
     'Network Security Analyst',
     'Web3 Developer',
-=======
-    'Home',
-    'Software Engineers',
-    'Data Scientists',
-    'App Developers',
-    'Machine Learning Engineers',
-    'AI Engineers',
-    'Embedded Systems Engineers',
-    'Network Security Analyst',
-    'Web3 Developers',
->>>>>>> bb3ed9b04deed4e6aa92b35199b1cf0f021c2517
   ];
 
   @override

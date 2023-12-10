@@ -722,7 +722,7 @@ class _SendCustomeOfferPageState extends State<SendCustomeOfferPage> {
                         horizontal: 24,
                         vertical: 20,
                       ),
-                      hintText: 'Offer price',
+                      hintText: 'Offer salary',
                       border: OutlineInputBorder(
                         borderSide: Divider.createBorderSide(context),
                         borderRadius: BorderRadius.circular(22.0),
@@ -758,7 +758,7 @@ class _SendCustomeOfferPageState extends State<SendCustomeOfferPage> {
                         horizontal: 24,
                         vertical: 20,
                       ),
-                      hintText: 'Delivery Time (Days)',
+                      hintText: 'Job Duration (Days)',
                       border: OutlineInputBorder(
                         borderSide: Divider.createBorderSide(context),
                         borderRadius: BorderRadius.circular(22.0),
@@ -793,7 +793,7 @@ class _SendCustomeOfferPageState extends State<SendCustomeOfferPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const Text(
-                                  'Service specifications :',
+                                  'Job Specifications :',
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
@@ -857,7 +857,7 @@ class _SendCustomeOfferPageState extends State<SendCustomeOfferPage> {
                     ),
                     child: const Center(
                       child: Text(
-                        'Add service specification',
+                        'Add Job Specification',
                         style: TextStyle(color: Colors.grey),
                       ),
                     ),

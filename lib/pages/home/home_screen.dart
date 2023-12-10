@@ -472,11 +472,11 @@ class PostCard extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         shape: const CircleBorder(),
                         padding: const EdgeInsets.all(14),
-                        backgroundColor: Colors.white24,
+                        backgroundColor: Color.fromARGB(58, 211, 204, 204),
                       ),
                       child: Image.asset(
                         'assets/icons/comment.png',
-                        color: Colors.white70,
+                        color: Color.fromARGB(179, 255, 255, 255),
                         width: 25,
                         height: 25,
                       ),
@@ -486,13 +486,13 @@ class PostCard extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         shape: const CircleBorder(),
                         padding: const EdgeInsets.all(14),
-                        backgroundColor: Colors.white24,
+                        backgroundColor: Color.fromARGB(58, 211, 204, 204),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(2.0),
                         child: Image.asset(
                           'assets/icons/send.png',
-                          color: Colors.white70,
+                          color: Color.fromARGB(179, 255, 255, 255),
                           width: 22,
                           height: 22,
                         ),

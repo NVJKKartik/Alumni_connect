@@ -134,7 +134,7 @@ class _OffersTabState extends State<OffersTab> {
                                                 color: Colors.transparent,
                                               ),
                                               Text(
-                                                'Ordered at: ${DateFormat.yMMMd().format(order.createdAt).toString()}',
+                                                'Application sent at: ${DateFormat.yMMMd().format(order.createdAt).toString()}',
                                                 style: const TextStyle(
                                                   overflow:
                                                       TextOverflow.ellipsis,
@@ -148,7 +148,7 @@ class _OffersTabState extends State<OffersTab> {
                                                 color: Colors.transparent,
                                               ),
                                               Text(
-                                                'Delivery in: ${order.deliveryTime}',
+                                                'Joining in: ${order.deliveryTime} days',
                                                 style: const TextStyle(
                                                   overflow:
                                                       TextOverflow.ellipsis,

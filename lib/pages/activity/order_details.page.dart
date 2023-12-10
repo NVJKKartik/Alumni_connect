@@ -94,7 +94,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
             elevation: 0,
             backgroundColor: Colors.black,
             title: const Text(
-              'Order Details',
+              'Application Details',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             bottom: PreferredSize(
@@ -282,7 +282,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text(
-                            'Company',
+                            'Role',
                             style: TextStyle(
                               fontSize: 16,
                             ),
@@ -324,7 +324,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text(
-                            'Date of Application Sent:',
+                            'Total Working Days: ',
                             style: TextStyle(
                               fontSize: 16,
                             ),
@@ -695,7 +695,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                           acceptDelivery();
                                         },
                                         child: const Text(
-                                          'Accept delivery',
+                                          'Accept offer',
                                           style: TextStyle(fontSize: 18),
                                         ),
                                       )

@@ -16,8 +16,8 @@ class jobpostingsPage extends StatefulWidget {
 class _jobpostingsPageState extends State<jobpostingsPage> {
   final List<String> tabs = <String>[
     'Home',
-    'Data Scientist',
     'Software Developer',
+    'Data Scientist',
     'App Developer',
     'Machine Learning Engineer',
     'Artificial Intelligence Engineer',
