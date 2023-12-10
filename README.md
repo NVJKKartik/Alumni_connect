@@ -14,17 +14,27 @@ What sets this app apart is the dedicated alumni-driven job listing section, tra
 
 # Installation
 Step 1
-Clone or download the code from https://github.com/NVJKKartik/Alumni_connect.git
+Clone or download the code from  
+
+https://github.com/NVJKKartik/Alumni_connect.git
 
 Step 2
-Run "flutter pub get" in the terminal
+Run the  below command in the terminal
+```
+flutter pub get
+```
 
 Step 3
-Run "flutter run" in the terminal
+Run the  below command in the terminal
+```
+flutter run
+```
 
-The apk of the app can be downloaded from Google Drive https://drive.google.com/drive/folders/1Oz10jLMQwjyi8spVM88_Sm8Hey8A-P_J?usp=sharing
+The APK of the app can be downloaded from Google Drive  
 
-The app should be up and running.
+https://drive.google.com/drive/folders/1Oz10jLMQwjyi8spVM88_Sm8Hey8A-P_J?usp=sharing
+
+The app should be up and running.  
 Recheck the dependencies if the app is not working.
 
 # Contributors
