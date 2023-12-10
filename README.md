@@ -22,6 +22,8 @@ Run "flutter pub get" in the terminal
 Step 3
 Run "flutter run" in the terminal
 
+The apk of the app can be downloaded from google drive https://drive.google.com/drive/folders/1Oz10jLMQwjyi8spVM88_Sm8Hey8A-P_J?usp=sharing
+
 The app should be up and running.
 Recheck the dependencies if the app is not working.
 
