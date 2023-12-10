@@ -27,6 +27,7 @@ class _ChatPageState extends State<ChatPage> {
             if (snapshot.hasData) {
               final user = snapshot.data as CloudUser;
               return Scaffold(
+                resizeToAvoidBottomInset: true,
                 backgroundColor: Colors.black,
                 appBar: AppBar(
                   backgroundColor: Colors.black,

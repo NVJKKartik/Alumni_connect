@@ -35,12 +35,12 @@ class _LogInPageState extends State<LogInPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
-                "assets/images/graduation.jpg"), // Replace with your image asset
+                "assets/images/graduation_background.png"), // Replace with your image asset
             fit: BoxFit.cover,
           ),
         ),
@@ -64,7 +64,7 @@ class _LogInPageState extends State<LogInPage> {
                       'Alumni Connect',
                       style: GoogleFonts.poppins(
                         fontSize: 39.0,
-                        color: const Color.fromARGB(255, 11, 11, 11),
+                        color: Color.fromARGB(255, 220, 209, 209),
                         fontWeight: FontWeight.w800,
                       ),
                       textAlign: TextAlign.start,
@@ -136,14 +136,14 @@ class _LogInPageState extends State<LogInPage> {
                         text: 'Forgot your password? ',
                         style: const TextStyle(
                           fontSize: 14,
-                          color: Color.fromARGB(255, 9, 9, 9),
+                          color: Color.fromARGB(255, 176, 171, 171),
                           fontWeight: FontWeight.w500,
                         ),
                         children: [
                           TextSpan(
                             text: 'Get help logging in.',
                             style: const TextStyle(
-                              color: Color.fromARGB(255, 15, 15, 15),
+                              color: Color.fromARGB(255, 176, 171, 171),
                               fontWeight: FontWeight.w700,
                             ),
                             recognizer: TapGestureRecognizer()
