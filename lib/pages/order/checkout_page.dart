@@ -7,6 +7,100 @@ import 'package:alumni_connect/services/cloud/cloud_user/cloud_user_service.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:uuid/uuid.dart';
+import 'dart:io';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/services.dart';
+
+
+class PostCard extends StatelessWidget {
+  final String postUrl;
+  final String profileUrl;
+  final String userName;
+  final String profession;
+  const PostCard(
+      {Key? key,
+      required this.profileUrl,
+      required this.postUrl,
+      required this.userName,
+      required this.profession})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16),
+      height: 550,
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(
+          Radius.circular(36),
+        ),
+        color: Colors.white,
+        image:
+            DecorationImage(fit: BoxFit.cover, image: FileImage(File(postUrl))),
+      ),
+      child: Stack(
+        children: [
+          Positioned(
+            top: 20,
+            left: 20,
+            right: 10,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      width: 42,
+                      height: 42,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.white, width: 2),
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: NetworkImage(profileUrl),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          userName,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        Text(profession)
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const Positioned(
+            bottom: 0,
+            left: 15,
+            right: 20,
+            child: TextField(
+              // controller: _captionController,
+              maxLines: 2,
+              style: TextStyle(color: Colors.black),
+              decoration: InputDecoration(
+                hintText: 'Caption your shot.',
+                border: InputBorder.none,
+                hintStyle: TextStyle(fontSize: 18),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
 
 class CheckoutPage extends StatefulWidget {
   const CheckoutPage({super.key, required this.cloudjobposting});
@@ -75,7 +169,7 @@ class _CheckoutPage extends State<CheckoutPage> {
             elevation: 0,
             backgroundColor: Colors.black,
             title: const Text(
-              'Checkout',
+              'Submit Application',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             bottom: PreferredSize(
@@ -168,7 +262,7 @@ class _CheckoutPage extends State<CheckoutPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      'Payment Method',
+                      'Application Details',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
@@ -188,7 +282,7 @@ class _CheckoutPage extends State<CheckoutPage> {
                             width: 10,
                           ),
                           const Text(
-                            'Credit or Debit card',
+                            'Personal Details',
                             style: TextStyle(
                               fontSize: 16,
                             ),
@@ -207,7 +301,7 @@ class _CheckoutPage extends State<CheckoutPage> {
                               bottom: 3.0,
                             ),
                             child: Text(
-                              'Card number',
+                              'Mobile Number',
                               style: TextStyle(color: Colors.white70),
                             ),
                           ),
@@ -216,7 +310,7 @@ class _CheckoutPage extends State<CheckoutPage> {
                             decoration: InputDecoration(
                               fillColor: Colors.black,
                               contentPadding: const EdgeInsets.all(8),
-                              hintText: '0000-0000-0000-0000',
+                              hintText: '10 Digit Phone Number',
                               enabled: true,
                               filled: true,
                               border: OutlineInputBorder(
@@ -238,7 +332,7 @@ class _CheckoutPage extends State<CheckoutPage> {
                             decoration: InputDecoration(
                               fillColor: Colors.black,
                               contentPadding: const EdgeInsets.all(8),
-                              hintText: 'Cardholder\'s name',
+                              hintText: 'Applicant\'s name',
                               enabled: true,
                               filled: true,
                               border: OutlineInputBorder(
@@ -263,7 +357,7 @@ class _CheckoutPage extends State<CheckoutPage> {
                                   bottom: 3.0,
                                 ),
                                 child: Text(
-                                  'Expiry date',
+                                  'Year of Graduation',
                                   style: TextStyle(color: Colors.white70),
                                 ),
                               ),
@@ -296,7 +390,7 @@ class _CheckoutPage extends State<CheckoutPage> {
                                   bottom: 3.0,
                                 ),
                                 child: Text(
-                                  'CVV',
+                                  'Roll Number',
                                   style: TextStyle(color: Colors.white70),
                                 ),
                               ),
@@ -307,7 +401,7 @@ class _CheckoutPage extends State<CheckoutPage> {
                                   decoration: InputDecoration(
                                     fillColor: Colors.black,
                                     contentPadding: const EdgeInsets.all(8),
-                                    hintText: '000',
+                                    hintText: '21BDS069',
                                     enabled: true,
                                     filled: true,
                                     border: OutlineInputBorder(
@@ -394,160 +488,23 @@ class _CheckoutPage extends State<CheckoutPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Order Summary',
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        Text(
-                          '#10243654',
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontSize: 16,
-                            // fontWeight: FontWeight.w600,
-                            color: Colors.white70,
-                          ),
-                        ),
-                      ],
+                    const Text(
+                      'Send your Resume here: ',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                    ListView.builder(
-                      padding: EdgeInsets.zero,
-                      itemCount:
-                          widget.cloudjobposting.serviceSpecifications.length,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        final service =
-                            widget.cloudjobposting.serviceSpecifications[index];
-                        return Padding(
-                          padding: const EdgeInsets.only(top: 5),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                '${service['specificationName']}:',
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                ),
-                              ),
-                              Text(
-                                service['shortDetail'],
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
+                    const SizedBox(height: 8),
+                    ElevatedButton(
+                      onPressed: () {
+                        // Handle file attachment logic
+                        // You may want to use a file picker here
+                        // For simplicity, let's assume _attachFile method
+                        // is responsible for handling file attachment.
+                        _attachFile();
                       },
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 12),
-              child: Container(
-                padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
-                decoration: BoxDecoration(
-                  color: const Color(0xff242424),
-                  borderRadius: BorderRadius.circular(18),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            'Subtotal:',
-                            style: TextStyle(
-                              fontSize: 16,
-                            ),
-                          ),
-                          Text(
-                            '\$${widget.cloudjobposting.jobpostingStartingPrice}',
-                            // ignore: prefer_const_constructors
-                            style: TextStyle(
-                              fontSize: 16,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            'Service fees:',
-                            style: TextStyle(
-                              fontSize: 16,
-                            ),
-                          ),
-                          Text(
-                            '\$${(widget.cloudjobposting.jobpostingStartingPrice).toDouble() * 0.1}',
-                            style: const TextStyle(
-                              fontSize: 16,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Divider(),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            'Total:',
-                            style: TextStyle(
-                              fontSize: 16,
-                            ),
-                          ),
-                          Text(
-                            '\$${widget.cloudjobposting.jobpostingStartingPrice + (widget.cloudjobposting.jobpostingStartingPrice).toDouble() * 0.1}',
-                            style: const TextStyle(
-                              fontSize: 16,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Divider(),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            'Delivery Time:',
-                            style: TextStyle(
-                              fontSize: 16,
-                            ),
-                          ),
-                          Text(
-                            widget.cloudjobposting.deliveryTime,
-                            style: const TextStyle(
-                              fontSize: 16,
-                            ),
-                          ),
-                        ],
-                      ),
+                      child: const Text('Attach File'),
                     ),
                   ],
                 ),
@@ -575,7 +532,7 @@ class _CheckoutPage extends State<CheckoutPage> {
                   );
                 },
                 child: const Text(
-                  'Place Order',
+                  'Send Application',
                   style: TextStyle(fontSize: 18),
                 ),
               ),
@@ -584,5 +541,26 @@ class _CheckoutPage extends State<CheckoutPage> {
         ],
       ),
     );
+  }
+}
+void _attachFile() async {
+  try {
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
+
+    if (result != null) {
+      // Get the selected file
+      PlatformFile file = result.files.first;
+
+      // Process the selected file (you can save it, display its details, etc.)
+      print('File picked: ${file.name}');
+      print('File path: ${file.path}');
+      
+      // You may want to save the file path or perform further actions with the file.
+    } else {
+      // User canceled the file picker
+      print('File picking canceled.');
+    }
+  } catch (e) {
+    print('Error picking file: $e');
   }
 }

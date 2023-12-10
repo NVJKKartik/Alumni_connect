@@ -58,6 +58,7 @@ class _SignupDetailPageState extends State<SignupDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: Colors.black,
       body: SafeArea(
         child: Padding(

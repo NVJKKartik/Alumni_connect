@@ -32,6 +32,7 @@ class _jobpostingsPageState extends State<jobpostingsPage> {
       initialIndex: widget.selectedTab,
       length: tabs.length,
       child: Scaffold(
+        resizeToAvoidBottomInset: true,
         backgroundColor: Colors.black,
         body: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {

@@ -71,6 +71,7 @@ class _OfferDetailsPageState extends State<OfferDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: Colors.black,
       body: CustomScrollView(
         slivers: [

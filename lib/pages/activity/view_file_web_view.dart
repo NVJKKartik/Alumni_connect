@@ -24,6 +24,7 @@ class _ViewFileWebViewState extends State<ViewFileWebView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: Colors.black,
       appBar: AppBar(
         elevation: 0,

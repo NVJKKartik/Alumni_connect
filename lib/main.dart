@@ -18,7 +18,7 @@ void main() async {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'alumni_connect',
+      title: 'IIIT Alumni Connect',
       theme: ThemeData(
         brightness: Brightness.dark,
       ),

@@ -27,6 +27,7 @@ class _RootPageState extends State<RootPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       extendBody: true,
       body: IndexedStack(
         index: index,

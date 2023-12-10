@@ -43,15 +43,14 @@ class _CreatejobpostingPageState extends State<CreatejobpostingPage> {
   List<Map> services = [];
 
   final jobpostingCategories = [
-    'Home',
-    'Graphics & Design',
-    'Digital Marketing',
-    'Writing & Translation',
-    'Video & Animation',
-    'Music & Audio',
-    'Programming & Tech',
-    'Business',
-    'Lifestyle',
+    'Data Scientist',
+    'Software Developer',
+    'App Developer',
+    'Machine Learning Engineer',
+    'Artificial Intelligence Engineer',
+    'Embedded Systems Engineer',
+    'Network Security Analyst',
+    'Web3 Developer',
   ];
 
   @override
@@ -534,12 +533,13 @@ class _CreatejobpostingPageState extends State<CreatejobpostingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
         centerTitle: false,
         elevation: 0,
-        title: const Text('Create jobposting'),
+        title: const Text('Create Job/Internship Opportunity'),
         actions: [
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 10, 12, 10),
@@ -607,7 +607,7 @@ class _CreatejobpostingPageState extends State<CreatejobpostingPage> {
                       horizontal: 24,
                       vertical: 20,
                     ),
-                    hintText: 'jobposting title',
+                    hintText: 'Job Title',
                     border: OutlineInputBorder(
                       borderSide: Divider.createBorderSide(context),
                       borderRadius: BorderRadius.circular(22.0),
@@ -644,7 +644,7 @@ class _CreatejobpostingPageState extends State<CreatejobpostingPage> {
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                     ),
-                    hint: const Text("Select jobposting category"),
+                    hint: const Text("Select Job Category"),
                     borderRadius: BorderRadius.circular(22),
                     isExpanded: true,
                     value: _selectedCategory,
@@ -658,7 +658,7 @@ class _CreatejobpostingPageState extends State<CreatejobpostingPage> {
                     },
                     validator: (value) {
                       if (value == null || value.toString().isEmpty) {
-                        return 'Select jobposting category';
+                        return 'Select Job Category';
                       }
                       return null;
                     },
@@ -849,7 +849,7 @@ class _CreatejobpostingPageState extends State<CreatejobpostingPage> {
                   ),
                   validator: (value) {
                     if (value == null || value.toString().isEmpty) {
-                      return 'Select jobposting category';
+                      return 'Select Job Category';
                     }
                     return null;
                   },
@@ -868,7 +868,7 @@ class _CreatejobpostingPageState extends State<CreatejobpostingPage> {
                       horizontal: 24,
                       vertical: 20,
                     ),
-                    hintText: 'Starting price',
+                    hintText: 'Salary/Stipend',
                     border: OutlineInputBorder(
                       borderSide: Divider.createBorderSide(context),
                       borderRadius: BorderRadius.circular(22.0),
@@ -904,7 +904,7 @@ class _CreatejobpostingPageState extends State<CreatejobpostingPage> {
                       horizontal: 24,
                       vertical: 20,
                     ),
-                    hintText: 'Delivery Time (Days)',
+                    hintText: 'Job Duration(in Days)',
                     border: OutlineInputBorder(
                       borderSide: Divider.createBorderSide(context),
                       borderRadius: BorderRadius.circular(22.0),
