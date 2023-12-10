@@ -83,6 +83,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: Colors.black,
       body: CustomScrollView(
         slivers: [
@@ -93,7 +94,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
             elevation: 0,
             backgroundColor: Colors.black,
             title: const Text(
-              'Order Details',
+              'Application Details',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             bottom: PreferredSize(
@@ -188,7 +189,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Order Summary',
+                          'Application Number',
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
@@ -260,13 +261,13 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text(
-                            'Subtotal:',
+                            'Applicant Name:',
                             style: TextStyle(
                               fontSize: 16,
                             ),
                           ),
                           Text(
-                            '\$${widget.cloudOrder.jobpostingPrice}',
+                            '${widget.cloudOrder.employerName}',
                             // ignore: prefer_const_constructors
                             style: TextStyle(
                               fontSize: 16,
@@ -281,13 +282,13 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text(
-                            'Service fees:',
+                            'Role',
                             style: TextStyle(
                               fontSize: 16,
                             ),
                           ),
                           Text(
-                            '\$${widget.cloudOrder.serviceCharge}',
+                            '${widget.cloudOrder.jobpostingTitle}',
                             style: const TextStyle(
                               fontSize: 16,
                             ),
@@ -302,13 +303,13 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text(
-                            'Total:',
+                            'Salary/Stipend:',
                             style: TextStyle(
                               fontSize: 16,
                             ),
                           ),
                           Text(
-                            '\$${widget.cloudOrder.totalPrice}',
+                            '${widget.cloudOrder.totalPrice}',
                             style: const TextStyle(
                               fontSize: 16,
                             ),
@@ -323,7 +324,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text(
-                            'Delivery Time:',
+                            'Total Working Days: ',
                             style: TextStyle(
                               fontSize: 16,
                             ),
@@ -428,7 +429,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             const Text(
-                                              'Delivery message',
+                                              'Application comments',
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
                                                 fontSize: 20,
@@ -664,10 +665,10 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                   },
                                   child: Text(
                                     isDeliveryAccepted
-                                        ? 'Congratulations delivery accepted'
+                                        ? 'Congratulations, your application is accepted!!'
                                         : (isDelivered)
-                                            ? 'Update delivery'
-                                            : 'Send delivery',
+                                            ? 'Update details'
+                                            : 'Next Round',
                                     style: const TextStyle(fontSize: 18),
                                   ),
                                 ),
@@ -694,7 +695,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                           acceptDelivery();
                                         },
                                         child: const Text(
-                                          'Accept delivery',
+                                          'Accept offer',
                                           style: TextStyle(fontSize: 18),
                                         ),
                                       )
@@ -723,14 +724,14 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                               child: Center(
                                 child: isOrderAccepted
                                     ? const Text(
-                                        'Your order is in progress',
+                                        'Your application is under review.',
                                         style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       )
                                     : const Text(
-                                        'Order is not accepted yet',
+                                        'Application is not accepted yet',
                                         style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
@@ -752,14 +753,14 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                               child: Center(
                                 child: isOrderRejected
                                     ? const Text(
-                                        'Your order is rejected',
+                                        'Your application is rejected',
                                         style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       )
                                     : const Text(
-                                        'Order is not accepted yet',
+                                        'Your application is not accepted yet',
                                         style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,

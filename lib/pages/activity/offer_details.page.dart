@@ -71,6 +71,7 @@ class _OfferDetailsPageState extends State<OfferDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: Colors.black,
       body: CustomScrollView(
         slivers: [
@@ -176,7 +177,7 @@ class _OfferDetailsPageState extends State<OfferDetailsPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Order Summary',
+                          'Application Number',
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
@@ -249,7 +250,7 @@ class _OfferDetailsPageState extends State<OfferDetailsPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text(
-                            'Subtotal:',
+                            '',
                             style: TextStyle(
                               fontSize: 16,
                             ),
@@ -269,13 +270,13 @@ class _OfferDetailsPageState extends State<OfferDetailsPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text(
-                            'Service fees:',
+                            'Salary/Stipend',
                             style: TextStyle(
                               fontSize: 16,
                             ),
                           ),
                           Text(
-                            '\$${widget.cloudOrder.serviceCharge}',
+                            '',
                             style: const TextStyle(
                               fontSize: 16,
                             ),
@@ -290,13 +291,13 @@ class _OfferDetailsPageState extends State<OfferDetailsPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text(
-                            'Total:',
+                            'Location',
                             style: TextStyle(
                               fontSize: 16,
                             ),
                           ),
                           Text(
-                            '\$${widget.cloudOrder.totalPrice}',
+                            'Bangalore',
                             style: const TextStyle(
                               fontSize: 16,
                             ),
@@ -311,7 +312,7 @@ class _OfferDetailsPageState extends State<OfferDetailsPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text(
-                            'Delivery Time:',
+                            'Total Working Days:',
                             style: TextStyle(
                               fontSize: 16,
                             ),

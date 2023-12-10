@@ -37,9 +37,9 @@ class _PostsTabState extends State<PostsTab> {
                 borderRadius: BorderRadius.circular(18),
                 child: GridView.custom(
                   gridDelegate: SliverQuiltedGridDelegate(
-                    crossAxisCount: 3,
-                    mainAxisSpacing: 4,
-                    crossAxisSpacing: 4,
+                    crossAxisCount: 7,
+                    mainAxisSpacing: 8,
+                    crossAxisSpacing: 8,
                     repeatPattern: QuiltedGridRepeatPattern.inverted,
                     pattern: const [
                       QuiltedGridTile(2, 2),

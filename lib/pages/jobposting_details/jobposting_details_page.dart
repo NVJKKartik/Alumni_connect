@@ -53,6 +53,7 @@ class _jobpostingDetailsPageState extends State<jobpostingDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: Colors.black,
       body: CustomScrollView(
         slivers: [
@@ -236,7 +237,7 @@ class _jobpostingDetailsPageState extends State<jobpostingDetailsPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      'Service specifications :',
+                      'Job Specifications :',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(

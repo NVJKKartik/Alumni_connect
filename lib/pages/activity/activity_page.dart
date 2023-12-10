@@ -11,8 +11,8 @@ class ActivityPage extends StatefulWidget {
 
 class _ActivityPageState extends State<ActivityPage> {
   final List<String> tabs = <String>[
-    'Received orders',
-    'Placed orders',
+    'Received Application',
+    'Placed Application',
     'Received Offer',
     'Sent Offer'
   ];
@@ -22,6 +22,7 @@ class _ActivityPageState extends State<ActivityPage> {
     return DefaultTabController(
       length: tabs.length,
       child: Scaffold(
+        resizeToAvoidBottomInset: true,
         backgroundColor: Colors.black,
         body: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {

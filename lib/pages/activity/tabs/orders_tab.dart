@@ -148,7 +148,7 @@ class _OrdersTabState extends State<OrdersTab> {
                                                 color: Colors.transparent,
                                               ),
                                               Text(
-                                                'Ordered at: ${DateFormat.yMMMd().format(order.createdAt).toString()}',
+                                                'Application placed at: ${DateFormat.yMMMd().format(order.createdAt).toString()}',
                                                 style: const TextStyle(
                                                   overflow:
                                                       TextOverflow.ellipsis,
@@ -162,7 +162,7 @@ class _OrdersTabState extends State<OrdersTab> {
                                                 color: Colors.transparent,
                                               ),
                                               Text(
-                                                'Delivery in: ${order.deliveryTime}',
+                                                'Total working days: ${order.deliveryTime}',
                                                 style: const TextStyle(
                                                   overflow:
                                                       TextOverflow.ellipsis,

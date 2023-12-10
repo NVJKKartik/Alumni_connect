@@ -62,6 +62,7 @@ class _AddPostPageState extends State<AddPostPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: Colors.black,
       body: CustomScrollView(
         slivers: [
@@ -290,3 +291,4 @@ class PostCard extends StatelessWidget {
     );
   }
 }
+

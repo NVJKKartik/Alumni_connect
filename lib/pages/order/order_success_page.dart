@@ -29,7 +29,7 @@ class _OrderSuccessPageState extends State<OrderSuccessPage> {
           const Padding(
             padding: EdgeInsets.only(top: 16, bottom: 8),
             child: Text(
-              'Order Confirmed',
+              'Application Sent',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontWeight: FontWeight.bold,

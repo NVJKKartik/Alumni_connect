@@ -63,6 +63,7 @@ class _CommentsPageState extends State<CommentsPage> {
     }
 
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       extendBody: true,
       backgroundColor: Colors.black,
       appBar: AppBar(

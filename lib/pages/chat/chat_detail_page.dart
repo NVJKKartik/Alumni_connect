@@ -86,6 +86,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: Colors.black,
         centerTitle: false,
@@ -117,10 +118,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                             child: ListView.separated(
                               itemCount: allMessages.length,
                               reverse: true,
-                              separatorBuilder: (context, index) =>
-                                  const Divider(
-                                height: 12,
-                              ),
+                              separatorBuilder: (context, index) => const SizedBox(height: 12),
                               itemBuilder: (context, index) {
                                 final message = allMessages.elementAt(index);
                                 final sendAt = DateFormat.jm()
