@@ -1,7 +1,7 @@
 import 'package:alumni_connect/pages/profile/profile_page.dart';
 import 'package:alumni_connect/services/cloud/cloud_custom_offer/cloud_custom_offer.dart';
 import 'package:alumni_connect/services/cloud/cloud_custom_offer/cloud_custom_offer_service.dart';
-import 'package:alumni_connect/services/cloud/cloud_gig/cloud_gig.dart';
+import 'package:alumni_connect/services/cloud/cloud_jobposting/cloud_jobposting.dart';
 import 'package:alumni_connect/services/cloud/cloud_user/cloud_user.dart';
 import 'package:alumni_connect/services/cloud/cloud_user/cloud_user_service.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +9,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:uuid/uuid.dart';
 
 class SendCustomeOfferPage extends StatefulWidget {
-  const SendCustomeOfferPage({super.key, required this.cloudGig});
-  final CloudGig cloudGig;
+  const SendCustomeOfferPage({super.key, required this.cloudjobposting});
+  final Cloudjobposting cloudjobposting;
 
   @override
   State<SendCustomeOfferPage> createState() => _SendCustomeOfferPageState();
@@ -19,8 +19,8 @@ class SendCustomeOfferPage extends StatefulWidget {
 class _SendCustomeOfferPageState extends State<SendCustomeOfferPage> {
   late final TextEditingController _specificationTitleController;
   late final TextEditingController _shortDetailController;
-  late final TextEditingController _gigStartingPriceController;
-  late final TextEditingController _gigDeliveryTimeController;
+  late final TextEditingController _jobpostingStartingPriceController;
+  late final TextEditingController _jobpostingDeliveryTimeController;
 
   String keyword = '';
 
@@ -32,8 +32,8 @@ class _SendCustomeOfferPageState extends State<SendCustomeOfferPage> {
   void initState() {
     _specificationTitleController = TextEditingController();
     _shortDetailController = TextEditingController();
-    _gigStartingPriceController = TextEditingController();
-    _gigDeliveryTimeController = TextEditingController();
+    _jobpostingStartingPriceController = TextEditingController();
+    _jobpostingDeliveryTimeController = TextEditingController();
 
     super.initState();
   }
@@ -42,8 +42,8 @@ class _SendCustomeOfferPageState extends State<SendCustomeOfferPage> {
   void dispose() {
     _specificationTitleController.dispose();
     _shortDetailController.dispose();
-    _gigStartingPriceController.dispose();
-    _gigDeliveryTimeController.dispose();
+    _jobpostingStartingPriceController.dispose();
+    _jobpostingDeliveryTimeController.dispose();
     super.dispose();
   }
 
@@ -447,20 +447,21 @@ class _SendCustomeOfferPageState extends State<SendCustomeOfferPage> {
 
     CloudCustomOffer cloudCustomOffer = CloudCustomOffer(
       orderId: orderId,
-      userId: widget.cloudGig.userId,
-      gigId: widget.cloudGig.gigId,
-      gigTitle: widget.cloudGig.gigTitle,
-      gigCoverUrl: widget.cloudGig.gigCoverUrl,
+      userId: widget.cloudjobposting.userId,
+      jobpostingId: widget.cloudjobposting.jobpostingId,
+      jobpostingTitle: widget.cloudjobposting.jobpostingTitle,
+      jobpostingCoverUrl: widget.cloudjobposting.jobpostingCoverUrl,
       employerId: employersId.first,
       employerName: employers.first.fullName,
       employerProfileUrl: employers.first.profileUrl!,
-      gigPrice: widget.cloudGig.gigStartingPrice,
-      serviceSpecifications: widget.cloudGig.serviceSpecifications,
-      serviceCharge: widget.cloudGig.gigStartingPrice.toDouble() * 0.1,
-      totalPrice: widget.cloudGig.gigStartingPrice +
-          (widget.cloudGig.gigStartingPrice).toDouble() * 0.1,
+      jobpostingPrice: widget.cloudjobposting.jobpostingStartingPrice,
+      serviceSpecifications: widget.cloudjobposting.serviceSpecifications,
+      serviceCharge:
+          widget.cloudjobposting.jobpostingStartingPrice.toDouble() * 0.1,
+      totalPrice: widget.cloudjobposting.jobpostingStartingPrice +
+          (widget.cloudjobposting.jobpostingStartingPrice).toDouble() * 0.1,
       createdAt: DateTime.now(),
-      deliveryTime: widget.cloudGig.deliveryTime,
+      deliveryTime: widget.cloudjobposting.deliveryTime,
     );
     CloudCustomOfferService.firebase().createNewCustomOffer(cloudCustomOffer);
   }
@@ -500,7 +501,7 @@ class _SendCustomeOfferPageState extends State<SendCustomeOfferPage> {
                           borderRadius: BorderRadius.circular(18),
                           image: DecorationImage(
                             image: NetworkImage(
-                              widget.cloudGig.gigCoverUrl,
+                              widget.cloudjobposting.jobpostingCoverUrl,
                             ),
                             fit: BoxFit.cover,
                           ),
@@ -514,7 +515,7 @@ class _SendCustomeOfferPageState extends State<SendCustomeOfferPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                widget.cloudGig.gigTitle,
+                                widget.cloudjobposting.jobpostingTitle,
                                 maxLines: 2,
                                 style: const TextStyle(
                                   overflow: TextOverflow.ellipsis,
@@ -528,7 +529,8 @@ class _SendCustomeOfferPageState extends State<SendCustomeOfferPage> {
                               RatingBar.builder(
                                 minRating: 1,
                                 maxRating: 5,
-                                initialRating: widget.cloudGig.gigRating,
+                                initialRating:
+                                    widget.cloudjobposting.jobpostingRating,
                                 direction: Axis.horizontal,
                                 itemCount: 5,
                                 itemSize: 18,
@@ -711,7 +713,7 @@ class _SendCustomeOfferPageState extends State<SendCustomeOfferPage> {
                         )
                       : const SizedBox.shrink(),
                   TextFormField(
-                    controller: _gigStartingPriceController,
+                    controller: _jobpostingStartingPriceController,
                     keyboardType: TextInputType.number,
                     maxLines: 1,
                     decoration: InputDecoration(
@@ -747,7 +749,7 @@ class _SendCustomeOfferPageState extends State<SendCustomeOfferPage> {
                     color: Colors.transparent,
                   ),
                   TextFormField(
-                    controller: _gigDeliveryTimeController,
+                    controller: _jobpostingDeliveryTimeController,
                     keyboardType: TextInputType.number,
                     maxLines: 1,
                     decoration: InputDecoration(

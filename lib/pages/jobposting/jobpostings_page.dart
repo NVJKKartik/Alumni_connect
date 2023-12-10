@@ -1,19 +1,19 @@
-import 'package:alumni_connect/pages/gig/tabs/gig_category_tab.dart';
-import 'package:alumni_connect/pages/gig/tabs/home_tab.dart';
+import 'package:alumni_connect/pages/jobposting/tabs/jobposting_category_tab.dart';
+import 'package:alumni_connect/pages/jobposting/tabs/home_tab.dart';
 import 'package:flutter/material.dart';
 
-class GigsPage extends StatefulWidget {
-  const GigsPage({
+class jobpostingsPage extends StatefulWidget {
+  const jobpostingsPage({
     super.key,
     required this.selectedTab,
   });
   final int selectedTab;
 
   @override
-  State<GigsPage> createState() => _GigsPageState();
+  State<jobpostingsPage> createState() => _jobpostingsPageState();
 }
 
-class _GigsPageState extends State<GigsPage> {
+class _jobpostingsPageState extends State<jobpostingsPage> {
   final List<String> tabs = <String>[
     'Home',
     'Data Scientist',
@@ -87,28 +87,28 @@ class _GigsPageState extends State<GigsPage> {
           body: const TabBarView(
             children: [
               HomeTab(),
-              GigCategoryTab(
+              jobpostingCategoryTab(
                 category: 'Software Engineer',
               ),
-              GigCategoryTab(
+              jobpostingCategoryTab(
                 category: 'Data Scientist',
               ),
-              GigCategoryTab(
+              jobpostingCategoryTab(
                 category: 'App Developer',
               ),
-              GigCategoryTab(
+              jobpostingCategoryTab(
                 category: 'Machine Learning Engineer',
               ),
-              GigCategoryTab(
+              jobpostingCategoryTab(
                 category: 'AI Engineer',
               ),
-              GigCategoryTab(
+              jobpostingCategoryTab(
                 category: 'Embeddings System Engineer',
               ),
-              GigCategoryTab(
+              jobpostingCategoryTab(
                 category: 'Network Security Analyst',
               ),
-              GigCategoryTab(
+              jobpostingCategoryTab(
                 category: 'Web3 Developer',
               ),
             ],

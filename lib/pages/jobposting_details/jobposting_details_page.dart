@@ -1,25 +1,25 @@
-import 'package:alumni_connect/pages/gig_details/send_custom_offer.dart';
-import 'package:alumni_connect/pages/gig_details/team_members_account_page.dart';
+import 'package:alumni_connect/pages/jobposting_details/send_custom_offer.dart';
+import 'package:alumni_connect/pages/jobposting_details/team_members_account_page.dart';
 import 'package:alumni_connect/pages/order/checkout_page.dart';
 import 'package:alumni_connect/services/auth/auth_service.dart';
-import 'package:alumni_connect/services/cloud/cloud_gig/cloud_gig.dart';
+import 'package:alumni_connect/services/cloud/cloud_jobposting/cloud_jobposting.dart';
 import 'package:alumni_connect/services/cloud/cloud_user/cloud_user.dart';
 import 'package:alumni_connect/services/cloud/cloud_user/cloud_user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class GigDetailsPage extends StatefulWidget {
-  const GigDetailsPage({
+class jobpostingDetailsPage extends StatefulWidget {
+  const jobpostingDetailsPage({
     super.key,
-    required this.cloudGig,
+    required this.cloudjobposting,
   });
-  final CloudGig cloudGig;
+  final Cloudjobposting cloudjobposting;
 
   @override
-  State<GigDetailsPage> createState() => _GigDetailsPageState();
+  State<jobpostingDetailsPage> createState() => _jobpostingDetailsPageState();
 }
 
-class _GigDetailsPageState extends State<GigDetailsPage> {
+class _jobpostingDetailsPageState extends State<jobpostingDetailsPage> {
   final currentUser = AuthService.firebase().currentUser!;
   String get userId => currentUser.id;
 
@@ -36,7 +36,7 @@ class _GigDetailsPageState extends State<GigDetailsPage> {
     setState(() {
       isLoading = true;
     });
-    final teamMembersId = widget.cloudGig.teamMembers;
+    final teamMembersId = widget.cloudjobposting.teamMembers;
     for (String memberId in teamMembersId) {
       CloudUser? cloudUser =
           await CloudUserService.firebase().getUser(userId: memberId);
@@ -66,7 +66,7 @@ class _GigDetailsPageState extends State<GigDetailsPage> {
                   bottomRight: Radius.circular(32),
                 ),
                 child: Image.network(
-                  widget.cloudGig.gigCoverUrl,
+                  widget.cloudjobposting.jobpostingCoverUrl,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -83,7 +83,7 @@ class _GigDetailsPageState extends State<GigDetailsPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   RatingBar.builder(
-                    initialRating: widget.cloudGig.gigRating,
+                    initialRating: widget.cloudjobposting.jobpostingRating,
                     minRating: 1,
                     direction: Axis.horizontal,
                     allowHalfRating: true,
@@ -102,7 +102,7 @@ class _GigDetailsPageState extends State<GigDetailsPage> {
                     height: 11,
                   ),
                   Text(
-                    widget.cloudGig.gigTitle,
+                    widget.cloudjobposting.jobpostingTitle,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
@@ -157,7 +157,7 @@ class _GigDetailsPageState extends State<GigDetailsPage> {
                                   width: 12,
                                 ),
                                 Text(
-                                  '${widget.cloudGig.teamMembers.length.toString()}+ Members',
+                                  '${widget.cloudjobposting.teamMembers.length.toString()}+ Members',
                                   style: const TextStyle(
                                     fontWeight: FontWeight.w400,
                                     color: Color(0xFFCACACA),
@@ -213,7 +213,7 @@ class _GigDetailsPageState extends State<GigDetailsPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.cloudGig.gigDescription,
+                      widget.cloudjobposting.jobpostingDescription,
                       style: const TextStyle(
                         fontSize: 16,
                       ),
@@ -247,12 +247,13 @@ class _GigDetailsPageState extends State<GigDetailsPage> {
                     const Divider(),
                     ListView.builder(
                       padding: EdgeInsets.zero,
-                      itemCount: widget.cloudGig.serviceSpecifications.length,
+                      itemCount:
+                          widget.cloudjobposting.serviceSpecifications.length,
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
                         final service =
-                            widget.cloudGig.serviceSpecifications[index];
+                            widget.cloudjobposting.serviceSpecifications[index];
                         return Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8),
                           child: Row(
@@ -283,7 +284,7 @@ class _GigDetailsPageState extends State<GigDetailsPage> {
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.only(top: 12, bottom: 109),
-              child: (widget.cloudGig.userId != userId)
+              child: (widget.cloudjobposting.userId != userId)
                   ? ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size(140, 48),
@@ -297,13 +298,13 @@ class _GigDetailsPageState extends State<GigDetailsPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => CheckoutPage(
-                              cloudGig: widget.cloudGig,
+                              cloudjobposting: widget.cloudjobposting,
                             ),
                           ),
                         );
                       },
                       child: Text(
-                        'Continue (\$${widget.cloudGig.gigStartingPrice.toString()})',
+                        'Continue (\$${widget.cloudjobposting.jobpostingStartingPrice.toString()})',
                         style: const TextStyle(fontSize: 18),
                       ),
                     )
@@ -320,7 +321,7 @@ class _GigDetailsPageState extends State<GigDetailsPage> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => SendCustomeOfferPage(
-                                    cloudGig: widget.cloudGig,
+                                    cloudjobposting: widget.cloudjobposting,
                                   )),
                         );
                       },

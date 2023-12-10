@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:alumni_connect/pages/profile/profile_page.dart';
 import 'package:alumni_connect/services/auth/auth_service.dart';
-import 'package:alumni_connect/services/cloud/cloud_gig/cloud_gig.dart';
-import 'package:alumni_connect/services/cloud/cloud_gig/cloud_gig_service.dart';
+import 'package:alumni_connect/services/cloud/cloud_jobposting/cloud_jobposting.dart';
+import 'package:alumni_connect/services/cloud/cloud_jobposting/cloud_jobposting_service.dart';
 import 'package:alumni_connect/services/cloud/cloud_user/cloud_user.dart';
 import 'package:alumni_connect/services/cloud/cloud_user/cloud_user_service.dart';
 import 'package:alumni_connect/services/storage/firebase_file_storage.dart';
@@ -11,23 +11,23 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:uuid/uuid.dart';
 
-class CreateGigPage extends StatefulWidget {
-  const CreateGigPage({super.key});
+class CreatejobpostingPage extends StatefulWidget {
+  const CreatejobpostingPage({super.key});
 
   @override
-  State<CreateGigPage> createState() => _CreateGigPageState();
+  State<CreatejobpostingPage> createState() => _CreatejobpostingPageState();
 }
 
-class _CreateGigPageState extends State<CreateGigPage> {
+class _CreatejobpostingPageState extends State<CreatejobpostingPage> {
   // declare a GlobalKey
   final _formKey = GlobalKey<FormState>();
 
-  late final TextEditingController _gigTitleController;
-  late final TextEditingController _gigDescriptionController;
+  late final TextEditingController _jobpostingTitleController;
+  late final TextEditingController _jobpostingDescriptionController;
   late final TextEditingController _specificationTitleController;
   late final TextEditingController _shortDetailController;
-  late final TextEditingController _gigStartingPriceController;
-  late final TextEditingController _gigDeliveryTimeController;
+  late final TextEditingController _jobpostingStartingPriceController;
+  late final TextEditingController _jobpostingDeliveryTimeController;
 
   final currentUser = AuthService.firebase().currentUser!;
   String get userId => currentUser.id;
@@ -42,7 +42,7 @@ class _CreateGigPageState extends State<CreateGigPage> {
 
   List<Map> services = [];
 
-  final gigCategories = [
+  final jobpostingCategories = [
     'Home',
     'Graphics & Design',
     'Digital Marketing',
@@ -56,24 +56,24 @@ class _CreateGigPageState extends State<CreateGigPage> {
 
   @override
   void initState() {
-    _gigTitleController = TextEditingController();
-    _gigDescriptionController = TextEditingController();
+    _jobpostingTitleController = TextEditingController();
+    _jobpostingDescriptionController = TextEditingController();
     _specificationTitleController = TextEditingController();
     _shortDetailController = TextEditingController();
-    _gigStartingPriceController = TextEditingController();
-    _gigDeliveryTimeController = TextEditingController();
+    _jobpostingStartingPriceController = TextEditingController();
+    _jobpostingDeliveryTimeController = TextEditingController();
 
     super.initState();
   }
 
   @override
   void dispose() {
-    _gigTitleController.dispose();
-    _gigDescriptionController.dispose();
+    _jobpostingTitleController.dispose();
+    _jobpostingDescriptionController.dispose();
     _specificationTitleController.dispose();
     _shortDetailController.dispose();
-    _gigStartingPriceController.dispose();
-    _gigDeliveryTimeController.dispose();
+    _jobpostingStartingPriceController.dispose();
+    _jobpostingDeliveryTimeController.dispose();
 
     super.dispose();
   }
@@ -493,37 +493,42 @@ class _CreateGigPageState extends State<CreateGigPage> {
     });
   }
 
-  Future<void> addGig() async {
-    String gigId = const Uuid().v1();
-    String gigTitle = _gigTitleController.text;
-    String gigDescription = _gigDescriptionController.text;
-    String deliveryTime = _gigDeliveryTimeController.text;
-    double gigStartingPrice = double.parse(_gigStartingPriceController.text);
-
+  Future<void> addjobposting() async {
+    String jobpostingId = const Uuid().v1();
+    String jobpostingTitle = _jobpostingTitleController.text;
+    String jobpostingDescription = _jobpostingDescriptionController.text;
+    String deliveryTime = _jobpostingDeliveryTimeController.text;
+    double jobpostingStartingPrice =
+        double.parse(_jobpostingStartingPriceController.text);
+    String jobpostingCoverUrl = '';
     if (_image != null) {
-      final gigCoverUrl = await FirebaseFileStorage().uploadGigCoverImage(
+      jobpostingCoverUrl =
+          await FirebaseFileStorage().uploadjobpostingCoverImage(
         userId: userId,
         image: File(_image!.path),
         imageName: _image!.name,
       );
-
-      CloudGig cloudGig = CloudGig(
-        userId: userId,
-        gigId: gigId,
-        gigRating: 0.0,
-        gigCoverUrl: gigCoverUrl,
-        gigTitle: gigTitle,
-        gigCategory: _selectedCategory!,
-        gigDescription: gigDescription,
-        teamMembers: teamMembersId,
-        serviceSpecifications: services,
-        gigStartingPrice: gigStartingPrice,
-        deliveryTime: deliveryTime,
-        createdAt: DateTime.now(),
-      );
-
-      CloudGigService.firebase().createNewGig(cloudGig);
+    } else {
+      jobpostingCoverUrl =
+          'https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/5X/8/f/3/0/8f301697992932857a7cfb2413d550875abfa9fd.png';
     }
+
+    Cloudjobposting cloudjobposting = Cloudjobposting(
+      userId: userId,
+      jobpostingId: jobpostingId,
+      jobpostingRating: 0.0,
+      jobpostingCoverUrl: jobpostingCoverUrl,
+      jobpostingTitle: jobpostingTitle,
+      jobpostingCategory: _selectedCategory!,
+      jobpostingDescription: jobpostingDescription,
+      teamMembers: teamMembersId,
+      serviceSpecifications: services,
+      jobpostingStartingPrice: jobpostingStartingPrice,
+      deliveryTime: deliveryTime,
+      createdAt: DateTime.now(),
+    );
+
+    CloudjobpostingService.firebase().createNewjobposting(cloudjobposting);
   }
 
   @override
@@ -534,7 +539,7 @@ class _CreateGigPageState extends State<CreateGigPage> {
         backgroundColor: Colors.black,
         centerTitle: false,
         elevation: 0,
-        title: const Text('Create Gig'),
+        title: const Text('Create jobposting'),
         actions: [
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 10, 12, 10),
@@ -542,7 +547,7 @@ class _CreateGigPageState extends State<CreateGigPage> {
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   _formKey.currentState!.save();
-                  addGig();
+                  addjobposting();
                   if (!mounted) return;
                   Navigator.pop(context);
                 }
@@ -584,7 +589,7 @@ class _CreateGigPageState extends State<CreateGigPage> {
                   icon: Image.asset(
                     _image != null
                         ? _image!.path.toString()
-                        : 'assets/icons/gig_cover.png',
+                        : 'assets/icons/jobposting_cover.png',
                     color: _image != null ? null : const Color(0xff242424),
                   ),
                 ),
@@ -593,7 +598,7 @@ class _CreateGigPageState extends State<CreateGigPage> {
                   color: Colors.transparent,
                 ),
                 TextFormField(
-                  controller: _gigTitleController,
+                  controller: _jobpostingTitleController,
                   keyboardType: TextInputType.text,
                   maxLines: 1,
                   decoration: InputDecoration(
@@ -602,7 +607,7 @@ class _CreateGigPageState extends State<CreateGigPage> {
                       horizontal: 24,
                       vertical: 20,
                     ),
-                    hintText: 'Gig title',
+                    hintText: 'jobposting title',
                     border: OutlineInputBorder(
                       borderSide: Divider.createBorderSide(context),
                       borderRadius: BorderRadius.circular(22.0),
@@ -639,11 +644,11 @@ class _CreateGigPageState extends State<CreateGigPage> {
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                     ),
-                    hint: const Text("Select gig category"),
+                    hint: const Text("Select jobposting category"),
                     borderRadius: BorderRadius.circular(22),
                     isExpanded: true,
                     value: _selectedCategory,
-                    items: gigCategories.map(buildMenuItem).toList(),
+                    items: jobpostingCategories.map(buildMenuItem).toList(),
                     onChanged: (value) {
                       setState(
                         () {
@@ -653,7 +658,7 @@ class _CreateGigPageState extends State<CreateGigPage> {
                     },
                     validator: (value) {
                       if (value == null || value.toString().isEmpty) {
-                        return 'Select gig category';
+                        return 'Select jobposting category';
                       }
                       return null;
                     },
@@ -818,7 +823,7 @@ class _CreateGigPageState extends State<CreateGigPage> {
                   color: Colors.transparent,
                 ),
                 TextFormField(
-                  controller: _gigDescriptionController,
+                  controller: _jobpostingDescriptionController,
                   keyboardType: TextInputType.text,
                   maxLines: 6,
                   decoration: InputDecoration(
@@ -844,7 +849,7 @@ class _CreateGigPageState extends State<CreateGigPage> {
                   ),
                   validator: (value) {
                     if (value == null || value.toString().isEmpty) {
-                      return 'Select gig category';
+                      return 'Select jobposting category';
                     }
                     return null;
                   },
@@ -854,7 +859,7 @@ class _CreateGigPageState extends State<CreateGigPage> {
                   color: Colors.transparent,
                 ),
                 TextFormField(
-                  controller: _gigStartingPriceController,
+                  controller: _jobpostingStartingPriceController,
                   keyboardType: TextInputType.number,
                   maxLines: 1,
                   decoration: InputDecoration(
@@ -890,7 +895,7 @@ class _CreateGigPageState extends State<CreateGigPage> {
                   color: Colors.transparent,
                 ),
                 TextFormField(
-                  controller: _gigDeliveryTimeController,
+                  controller: _jobpostingDeliveryTimeController,
                   keyboardType: TextInputType.number,
                   maxLines: 1,
                   decoration: InputDecoration(

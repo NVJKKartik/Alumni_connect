@@ -20,17 +20,17 @@ const captionFieldName = 'caption';
 const commentIdFieldName = 'comment_id';
 const commentTextFieldName = 'comment_text';
 
-// gig field constant
-const gigIdFieldName = 'gig_id';
-const gigRatingFieldName = 'gig_rating';
-const gigCoverUrlFieldName = 'gig_cover_url';
-const gigTitleFieldName = 'gig_title';
+// jobposting field constant
+const jobpostingIdFieldName = 'jobposting_id';
+const jobpostingRatingFieldName = 'jobposting_rating';
+const jobpostingCoverUrlFieldName = 'jobposting_cover_url';
+const jobpostingTitleFieldName = 'jobposting_title';
 const orderByFieldName = 'order_by';
-const gigCategoryFieldName = 'gig_category';
-const gigDescriptionFieldName = 'gig_description';
+const jobpostingCategoryFieldName = 'jobposting_category';
+const jobpostingDescriptionFieldName = 'jobposting_description';
 const teamMembersFieldName = 'team_members';
 const serviceSpecificationsFieldName = 'service_specifications';
-const gigStartingPriceFieldName = 'gig_starting_price';
+const jobpostingStartingPriceFieldName = 'jobposting_starting_price';
 const deliveryTimeFieldName = 'delivery_time';
 const createdAtFieldName = 'created_at';
 
@@ -42,7 +42,7 @@ const employerIdFieldName = 'employer_id';
 const employerNameFieldName = 'employer_name';
 const employerProfileUrlFieldName = 'employer_profile_url';
 const projectRequirementFieldName = 'project_requirement';
-const gigPriceFieldName = 'gig_price';
+const jobpostingPriceFieldName = 'jobposting_price';
 const serviceChargeFieldName = 'service_charge';
 const totalPriceFieldName = 'total_price';
 const filePathUrlFieldName = 'file_path';

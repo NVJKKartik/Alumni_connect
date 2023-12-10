@@ -1,7 +1,7 @@
-import 'package:alumni_connect/pages/gig_details/gig_details_page.dart';
+import 'package:alumni_connect/pages/jobposting_details/jobposting_details_page.dart';
 import 'package:alumni_connect/services/auth/auth_service.dart';
-import 'package:alumni_connect/services/cloud/cloud_gig/cloud_gig.dart';
-import 'package:alumni_connect/services/cloud/cloud_gig/cloud_gig_service.dart';
+import 'package:alumni_connect/services/cloud/cloud_jobposting/cloud_jobposting.dart';
+import 'package:alumni_connect/services/cloud/cloud_jobposting/cloud_jobposting_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -24,13 +24,14 @@ class _ServicesTabState extends State<ServicesTab> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: CloudGigService.firebase().userAllGigs(userId),
+      stream: CloudjobpostingService.firebase().userAlljobpostings(userId),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.active:
             if (snapshot.hasData) {
-              final userGigs = snapshot.data as Iterable<CloudGig>;
-              if (userGigs.isEmpty) {
+              final userjobpostings =
+                  snapshot.data as Iterable<Cloudjobposting>;
+              if (userjobpostings.isEmpty) {
                 return Center(
                   child: Image.asset(
                     'assets/icons/nothing.png',
@@ -40,18 +41,18 @@ class _ServicesTabState extends State<ServicesTab> {
                 );
               }
               return ListView.separated(
-                itemCount: userGigs.length,
+                itemCount: userjobpostings.length,
                 shrinkWrap: true,
                 separatorBuilder: (context, index) => const Divider(),
                 itemBuilder: (context, index) {
-                  final userGig = userGigs.elementAt(index);
+                  final userjobposting = userjobpostings.elementAt(index);
                   return InkWell(
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => GigDetailsPage(
-                            cloudGig: userGig,
+                          builder: (context) => jobpostingDetailsPage(
+                            cloudjobposting: userjobposting,
                           ),
                         ),
                       );
@@ -71,7 +72,7 @@ class _ServicesTabState extends State<ServicesTab> {
                               borderRadius: BorderRadius.circular(18),
                               image: DecorationImage(
                                 image: NetworkImage(
-                                  userGig.gigCoverUrl,
+                                  userjobposting.jobpostingCoverUrl,
                                 ),
                                 fit: BoxFit.cover,
                               ),
@@ -86,7 +87,7 @@ class _ServicesTabState extends State<ServicesTab> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    userGig.gigTitle,
+                                    userjobposting.jobpostingTitle,
                                     maxLines: 2,
                                     style: const TextStyle(
                                       overflow: TextOverflow.ellipsis,
@@ -98,7 +99,7 @@ class _ServicesTabState extends State<ServicesTab> {
                                     height: 2,
                                   ),
                                   Text(
-                                    'From \$${userGig.gigStartingPrice}',
+                                    'From \$${userjobposting.jobpostingStartingPrice}',
                                     style: const TextStyle(
                                         overflow: TextOverflow.ellipsis,
                                         fontSize: 14,
@@ -111,7 +112,8 @@ class _ServicesTabState extends State<ServicesTab> {
                                   RatingBar.builder(
                                     minRating: 1,
                                     maxRating: 5,
-                                    initialRating: userGig.gigRating,
+                                    initialRating:
+                                        userjobposting.jobpostingRating,
                                     direction: Axis.horizontal,
                                     itemCount: 5,
                                     itemSize: 18,
@@ -139,7 +141,7 @@ class _ServicesTabState extends State<ServicesTab> {
               );
             } else {
               return const Center(
-                child: Text('No Gigs'),
+                child: Text('No jobpostings'),
               );
             }
 

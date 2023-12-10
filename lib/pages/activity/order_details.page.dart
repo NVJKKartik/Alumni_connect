@@ -115,7 +115,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                           borderRadius: BorderRadius.circular(18),
                           image: DecorationImage(
                             image: NetworkImage(
-                              widget.cloudOrder.gigCoverUrl,
+                              widget.cloudOrder.jobpostingCoverUrl,
                             ),
                             fit: BoxFit.cover,
                           ),
@@ -129,7 +129,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                widget.cloudOrder.gigTitle,
+                                widget.cloudOrder.jobpostingTitle,
                                 maxLines: 2,
                                 style: const TextStyle(
                                   overflow: TextOverflow.ellipsis,
@@ -266,7 +266,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                             ),
                           ),
                           Text(
-                            '\$${widget.cloudOrder.gigPrice}',
+                            '\$${widget.cloudOrder.jobpostingPrice}',
                             // ignore: prefer_const_constructors
                             style: TextStyle(
                               fontSize: 16,

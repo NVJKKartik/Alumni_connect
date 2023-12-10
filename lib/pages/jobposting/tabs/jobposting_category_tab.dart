@@ -1,28 +1,29 @@
-import 'package:alumni_connect/pages/gig_details/gig_details_page.dart';
-import 'package:alumni_connect/services/cloud/cloud_gig/cloud_gig.dart';
-import 'package:alumni_connect/services/cloud/cloud_gig/cloud_gig_service.dart';
+import 'package:alumni_connect/pages/jobposting_details/jobposting_details_page.dart';
+import 'package:alumni_connect/services/cloud/cloud_jobposting/cloud_jobposting.dart';
+import 'package:alumni_connect/services/cloud/cloud_jobposting/cloud_jobposting_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class GigCategoryTab extends StatefulWidget {
-  const GigCategoryTab({super.key, required this.category});
+class jobpostingCategoryTab extends StatefulWidget {
+  const jobpostingCategoryTab({super.key, required this.category});
   final String category;
 
   @override
-  State<GigCategoryTab> createState() => _HomeTabState();
+  State<jobpostingCategoryTab> createState() => _HomeTabState();
 }
 
-class _HomeTabState extends State<GigCategoryTab> {
+class _HomeTabState extends State<jobpostingCategoryTab> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: CloudGigService.firebase().gigsByCategory(widget.category),
+      stream: CloudjobpostingService.firebase()
+          .jobpostingsByCategory(widget.category),
       builder: (BuildContext context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.active:
             if (snapshot.hasData) {
-              final allGigs = snapshot.data as Iterable<CloudGig>;
-              if (allGigs.isEmpty) {
+              final alljobpostings = snapshot.data as Iterable<Cloudjobposting>;
+              if (alljobpostings.isEmpty) {
                 return Center(
                   child: Image.asset(
                     'assets/icons/nothing.png',
@@ -48,9 +49,10 @@ class _HomeTabState extends State<GigCategoryTab> {
                           padding: const EdgeInsets.only(top: 12, bottom: 90),
                           sliver: SliverList(
                             delegate: SliverChildBuilderDelegate(
-                              childCount: allGigs.length,
+                              childCount: alljobpostings.length,
                               (context, index) {
-                                final gig = allGigs.elementAt(index);
+                                final jobposting =
+                                    alljobpostings.elementAt(index);
                                 return Padding(
                                   padding: const EdgeInsets.only(bottom: 14),
                                   child: InkWell(
@@ -59,7 +61,8 @@ class _HomeTabState extends State<GigCategoryTab> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              GigDetailsPage(cloudGig: gig),
+                                              jobpostingDetailsPage(
+                                                  cloudjobposting: jobposting),
                                         ),
                                       );
                                     },
@@ -79,7 +82,7 @@ class _HomeTabState extends State<GigCategoryTab> {
                                                   BorderRadius.circular(18),
                                               image: DecorationImage(
                                                 image: NetworkImage(
-                                                  gig.gigCoverUrl,
+                                                  jobposting.jobpostingCoverUrl,
                                                 ),
                                                 fit: BoxFit.cover,
                                               ),
@@ -98,7 +101,7 @@ class _HomeTabState extends State<GigCategoryTab> {
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    gig.gigTitle,
+                                                    jobposting.jobpostingTitle,
                                                     maxLines: 2,
                                                     style: const TextStyle(
                                                       overflow:
@@ -112,7 +115,7 @@ class _HomeTabState extends State<GigCategoryTab> {
                                                     height: 2,
                                                   ),
                                                   Text(
-                                                    'Salary \$${gig.gigStartingPrice}',
+                                                    'Salary \$${jobposting.jobpostingStartingPrice}',
                                                     style: const TextStyle(
                                                       overflow:
                                                           TextOverflow.ellipsis,
@@ -128,8 +131,8 @@ class _HomeTabState extends State<GigCategoryTab> {
                                                   RatingBar.builder(
                                                     minRating: 1,
                                                     maxRating: 5,
-                                                    initialRating:
-                                                        gig.gigRating,
+                                                    initialRating: jobposting
+                                                        .jobpostingRating,
                                                     direction: Axis.horizontal,
                                                     itemCount: 5,
                                                     itemSize: 18,

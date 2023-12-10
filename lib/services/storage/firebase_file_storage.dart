@@ -28,13 +28,15 @@ class FirebaseFileStorage {
     return await snapshot.ref.getDownloadURL();
   }
 
-  Future<String> uploadGigCoverImage({
+  Future<String> uploadjobpostingCoverImage({
     required String userId,
     required File image,
     required String imageName,
   }) async {
-    final ref =
-        firebaseStorage.ref().child('gigs/$userId/$imageName').putFile(image);
+    final ref = firebaseStorage
+        .ref()
+        .child('jobpostings/$userId/$imageName')
+        .putFile(image);
     TaskSnapshot snapshot = await ref;
     return await snapshot.ref.getDownloadURL();
   }
@@ -44,8 +46,10 @@ class FirebaseFileStorage {
     required File file,
     required String fileName,
   }) async {
-    final ref =
-        firebaseStorage.ref().child('deliveries/$userId/$fileName').putFile(file);
+    final ref = firebaseStorage
+        .ref()
+        .child('deliveries/$userId/$fileName')
+        .putFile(file);
     TaskSnapshot snapshot = await ref;
     return await snapshot.ref.getDownloadURL();
   }

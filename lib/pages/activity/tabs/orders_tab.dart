@@ -106,7 +106,7 @@ class _OrdersTabState extends State<OrdersTab> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                '\$${order.gigPrice}',
+                                                '\$${order.jobpostingPrice}',
                                                 style: const TextStyle(
                                                     overflow:
                                                         TextOverflow.ellipsis,
@@ -185,7 +185,7 @@ class _OrdersTabState extends State<OrdersTab> {
                                                   BorderRadius.circular(18),
                                               image: DecorationImage(
                                                 image: NetworkImage(
-                                                  order.gigCoverUrl,
+                                                  order.jobpostingCoverUrl,
                                                 ),
                                                 fit: BoxFit.cover,
                                               ),
@@ -208,7 +208,7 @@ class _OrdersTabState extends State<OrdersTab> {
               );
             } else {
               return const Center(
-                child: Text('Gig Not found'),
+                child: Text('jobposting Not found'),
               );
             }
           default:

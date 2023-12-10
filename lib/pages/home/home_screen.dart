@@ -1,7 +1,7 @@
 import 'package:alumni_connect/constants/routes.dart';
 import 'package:alumni_connect/enums/menu_actions.dart';
-import 'package:alumni_connect/gigs.dart';
-import 'package:alumni_connect/pages/gig/gigs_page.dart';
+import 'package:alumni_connect/jobpostings.dart';
+import 'package:alumni_connect/pages/jobposting/jobpostings_page.dart';
 import 'package:alumni_connect/pages/profile/profile_page.dart';
 import 'package:alumni_connect/services/auth/auth_service.dart';
 import 'package:alumni_connect/services/cloud/cloud_post/cloud_post.dart';
@@ -96,14 +96,14 @@ class _HomeScreenState extends State<HomeScreen> {
           //     child: PageView.builder(
           //       padEnds: false,
           //       controller: pageController,
-          //       itemCount: gigs.length,
+          //       itemCount: jobpostings.length,
           //       physics: const BouncingScrollPhysics(),
           //       itemBuilder: (context, index) {
           //         bool active = index == currentPage;
-          //         return GigsCard(
+          //         return jobpostingsCard(
           //           active: active,
           //           index: index,
-          //           gigs: gigs[index],
+          //           jobpostings: jobpostings[index],
           //         );
           //       },
           //     ),
@@ -192,17 +192,17 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-// class GigsCard extends StatelessWidget {
-//   const GigsCard({
+// class jobpostingsCard extends StatelessWidget {
+//   const jobpostingsCard({
 //     Key? key,
 //     this.active,
 //     this.index,
-//     this.gigs,
+//     this.jobpostings,
 //   }) : super(key: key);
 
 //   final bool? active;
 //   final int? index;
-//   final Gigs? gigs;
+//   final jobpostings? jobpostings;
 
 //   @override
 //   Widget build(BuildContext context) {
@@ -215,8 +215,8 @@ class _HomeScreenState extends State<HomeScreen> {
 //         Navigator.push(
 //           context,
 //           MaterialPageRoute(
-//             builder: (context) => GigsPage(
-//               selectedTab: gigs!.currentIndex,
+//             builder: (context) => jobpostingsPage(
+//               selectedTab: jobpostings!.currentIndex,
 //             ),
 //           ),
 //         );
@@ -232,7 +232,7 @@ class _HomeScreenState extends State<HomeScreen> {
 //         ),
 //         decoration: BoxDecoration(
 //           borderRadius: BorderRadius.circular(32),
-//           color: gigs!.startColor!,
+//           color: jobpostings!.startColor!,
 //           boxShadow: [
 //             BoxShadow(
 //               color: Colors.white.withOpacity(0.1),
@@ -242,7 +242,7 @@ class _HomeScreenState extends State<HomeScreen> {
 //           ],
 //           image: DecorationImage(
 //             fit: BoxFit.cover,
-//             image: AssetImage('assets/images/${gigs!.gigImage}'),
+//             image: AssetImage('assets/images/${jobpostings!.jobpostingImage}'),
 //           ),
 //         ),
 //         child: Stack(
@@ -252,8 +252,8 @@ class _HomeScreenState extends State<HomeScreen> {
 //                 borderRadius: BorderRadius.circular(32),
 //                 gradient: LinearGradient(
 //                   colors: [
-//                     gigs!.startColor!,
-//                     gigs!.endColor!.withOpacity(0.3),
+//                     jobpostings!.startColor!,
+//                     jobpostings!.endColor!.withOpacity(0.3),
 //                   ],
 //                   begin: Alignment.bottomRight,
 //                   end: Alignment.topLeft,
@@ -274,13 +274,13 @@ class _HomeScreenState extends State<HomeScreen> {
 //                 ),
 //                 height: 87,
 //                 decoration: BoxDecoration(
-//                     color: gigs!.startColor,
+//                     color: jobpostings!.startColor,
 //                     borderRadius: const BorderRadius.only(
 //                       bottomLeft: Radius.circular(32),
 //                       bottomRight: Radius.circular(32),
 //                     )),
 //                 child: Text(
-//                   gigs!.gigInfo,
+//                   jobpostings!.jobpostingInfo,
 //                   overflow: TextOverflow.ellipsis,
 //                   maxLines: 2,
 //                   style: const TextStyle(
@@ -311,10 +311,10 @@ class _HomeScreenState extends State<HomeScreen> {
 //                         color: Colors.white,
 //                       ),
 //                       child: Text(
-//                         gigs!.category,
+//                         jobpostings!.category,
 //                         style: TextStyle(
 //                           fontSize: 13,
-//                           color: gigs!.startColor,
+//                           color: jobpostings!.startColor,
 //                         ),
 //                       ),
 //                     ),

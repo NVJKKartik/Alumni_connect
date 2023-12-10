@@ -160,11 +160,11 @@ class _AddPostPageState extends State<AddPostPage> {
                         ),
                         onPressed: () async {
                           Navigator.of(context).pushReplacementNamed(
-                            createGigRoute,
+                            createjobpostingRoute,
                             // (Route<dynamic> route) => false,
                           );
                         },
-                        child: const Text('Create gig'),
+                        child: const Text('Create jobposting'),
                       ),
                     ],
                   ),
